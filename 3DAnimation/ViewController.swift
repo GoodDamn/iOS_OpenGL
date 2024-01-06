@@ -13,7 +13,7 @@ class ViewController
 
     private final let TAG = "ViewController"
     
-    private var mEntities: [Entity]? = nil
+    private final let mRenderer = MainRenderer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,39 +59,11 @@ class ViewController
         drawIn rect: CGRect
     ) {
         
-        if mEntities == nil {
-            let p = Bundle
-                .main
-                .resourceURL!
-                .appendingPathComponent(
-                    "Sphere.obj"
-                )
-            
-            print(TAG, p)
-            mEntities = [
-                Entity(
-                    objectPath: p.path
-                )
-            ]
+        if !mRenderer.isCreated() {
+            mRenderer.onCreate(rect)
         }
         
-        glClearColor(0.0,0.0,1.0,1.0)
-        glClear(
-            GLbitfield(
-                GL_COLOR_BUFFER_BIT
-            )
-        )
-        glViewport(
-            GLint(0),
-            GLint(0),
-            GLsizei(view.frame.width),
-            GLsizei(view.frame.height)
-        )
-        
-        mEntities!.forEach { e in
-            e.draw()
-        }
-        
+        mRenderer.onDraw(rect)
     }
     
 }
@@ -109,6 +81,7 @@ extension ViewController:
     func glkViewControllerUpdate(
         _ controller: GLKViewController
     ) {
+        mRenderer.onUpdate()
     }
     
 }
