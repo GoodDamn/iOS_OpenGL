@@ -48,7 +48,6 @@ class ViewController
         glView.backgroundColor = .green
         
         view.addSubview(glView)
-        
         glView.context = context
                 
         glView.drawableColorFormat = .RGBA8888
@@ -73,7 +72,7 @@ class ViewController
         _ view: GLKView,
         drawIn rect: CGRect
     ) {
-        
+        print(TAG, "glkView")
         if !mRenderer.isCreated() {
             mRenderer.onCreate(mPosRender)
         }
@@ -97,6 +96,10 @@ extension ViewController:
         _ controller: GLKViewController
     ) {
         mRenderer.onUpdate()
+        controller
+            .view!
+            .subviews[0]
+            .setNeedsDisplay()
     }
     
 }

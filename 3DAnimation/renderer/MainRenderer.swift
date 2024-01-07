@@ -57,7 +57,9 @@ class MainRenderer {
     }
     
     func onUpdate() {
-        
+        mEntities?.forEach { it in
+            it.onUpdate()
+        }
     }
     
     func isCreated() -> Bool {

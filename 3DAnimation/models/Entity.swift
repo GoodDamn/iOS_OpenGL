@@ -182,7 +182,27 @@ class Entity {
         )
         
     }
+    
+    func onUpdate() {
+        let of = sinf(
+            Float(
+                CACurrentMediaTime()
+            )
+        )
         
+        print(TAG, "UPDATE():", CACurrentMediaTime(),
+            of)
+        
+        let durationSec = 2
+        
+        modelView = GLKMatrix4Translate(
+            modelView,
+            of,
+            0,
+            0
+        )
+    }
+    
     func draw() {
         glUseProgram(mProgram)
         
