@@ -15,6 +15,8 @@ class ViewController
     
     private final let mRenderer = MainRenderer()
     
+    private var mPosRender: CGRect = .zero
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -25,9 +27,22 @@ class ViewController
             return
         }
         
+        let f = view.frame
+        let scale = UIScreen.main.scale
+        
+        mPosRender = CGRect(
+            x: 0,
+            y: 0,
+            width: f.width * scale,
+            height: f.height * scale
+        )
+        
+        
+        print(TAG, "VIEW_FRAME:", f, "PX:",mPosRender, scale)
+        
         
         let glView = GLKView(
-            frame: view.frame
+            frame: f
         )
         
         glView.backgroundColor = .green
@@ -60,10 +75,10 @@ class ViewController
     ) {
         
         if !mRenderer.isCreated() {
-            mRenderer.onCreate(rect)
+            mRenderer.onCreate(mPosRender)
         }
         
-        mRenderer.onDraw(rect)
+        mRenderer.onDraw(mPosRender)
     }
     
 }

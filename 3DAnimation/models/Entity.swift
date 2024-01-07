@@ -16,17 +16,18 @@ class Entity {
     """
     precision mediump float;
     void main() {
-        float st = gl_FragCoord.x / 360.0;
-        gl_FragColor = vec4(1.0,st,0.0,1.0);
+        float a = gl_FragCoord.x / 1179.0;
+        gl_FragColor = vec4(1.0-a,a,0.0,1.0);
     }
     """
     
     private final let mVertexCode =
     """
     attribute vec4 position;
+    attribute vec4 color;
+    
     void main() {
-        vec4 p = position;
-        gl_Position = p;
+        gl_Position = position;
     }
     """
     
@@ -36,6 +37,8 @@ class Entity {
     
     private var mVertexBuffer: GLuint = 1
     private var mIndexBuffer: GLuint = 1
+    
+    private var mVertexArrayObject: GLuint = 1
     
     private var mProgram: GLuint
     
@@ -73,6 +76,17 @@ class Entity {
             )
         
         glLinkProgram(mProgram)
+        
+        // Generate VAO and bind a content to it
+        glGenVertexArraysOES(
+            1,
+            &mVertexArrayObject
+        )
+        
+        glBindVertexArrayOES(
+            mVertexArrayObject
+        )
+        
         
         // Generate vertex buffer
         glGenBuffers(
@@ -116,12 +130,10 @@ class Entity {
             GLenum(GL_ELEMENT_ARRAY_BUFFER),
             GLsizeiptr(mObject.indices.count * 2),
             mObject.indices,
-            GLenum(GL_STATIC_DRAW))
-    }
+            GLenum(GL_STATIC_DRAW)
+        )
         
-    func draw() {
-        
-        glUseProgram(mProgram)
+        // Enable vertex attributes
         
         glEnableVertexAttribArray(
             mPosition
@@ -135,21 +147,41 @@ class Entity {
             GLsizei(3 * 4), // size * sizeof(type)
             nil
         )
-    
+        
+        glBindVertexArrayOES(
+            0
+        )
+        
         glBindBuffer(
             GLenum(GL_ARRAY_BUFFER),
-            mVertexBuffer
+            0
         )
         
         glBindBuffer(
             GLenum(GL_ELEMENT_ARRAY_BUFFER),
-            mIndexBuffer)
+            0
+        )
+        
+    }
+        
+    func draw() {
+        
+        glUseProgram(mProgram)
+        
+        
+        glBindVertexArrayOES(
+            mVertexArrayObject
+        )
         
         glDrawElements(
             GLenum(GL_TRIANGLES),
             GLsizei(mObject.indices.count),
             GLenum(GL_UNSIGNED_SHORT),
             nil
+        )
+        
+        glBindVertexArrayOES(
+            0
         )
         
     }

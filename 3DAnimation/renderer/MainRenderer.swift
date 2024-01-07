@@ -44,13 +44,13 @@ class MainRenderer {
                 GL_COLOR_BUFFER_BIT
             )
         )
+        
         glViewport(
             GLint(0),
             GLint(0),
-            GLsizei(frame.width),
-            GLsizei(frame.height)
-        )
-        
+            GLint(frame.width),
+            GLint(frame.height))
+                
         mEntities!.forEach { e in
             e.draw()
         }
