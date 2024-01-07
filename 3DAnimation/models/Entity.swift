@@ -26,14 +26,20 @@ class Entity {
     attribute vec4 position;
     attribute vec4 color;
     
+    uniform mat4 model;
+    
     void main() {
-        gl_Position = position;
+        gl_Position = model * position;
     }
     """
     
     private var mObject: Object3d
     
+    private var modelView = GLKMatrix4Identity
+    
     private var mPosition: GLuint
+    
+    private var modelViewUniform: GLint = 1
     
     private var mVertexBuffer: GLuint = 1
     private var mIndexBuffer: GLuint = 1
@@ -76,6 +82,11 @@ class Entity {
             )
         
         glLinkProgram(mProgram)
+        
+        modelViewUniform = glGetUniformLocation(
+            mProgram,
+            "model"
+        )
         
         // Generate VAO and bind a content to it
         glGenVertexArraysOES(
@@ -162,12 +173,25 @@ class Entity {
             0
         )
         
+        
+        modelView = GLKMatrix4Translate(
+            modelView,
+            -0.5,
+            -0.5,
+            0
+        )
+        
     }
         
     func draw() {
-        
         glUseProgram(mProgram)
         
+        glUniformMatrix4fv(
+            modelViewUniform,
+            GLsizei(1),
+            GLboolean(0),
+            modelView.array
+        )
         
         glBindVertexArrayOES(
             mVertexArrayObject
@@ -184,6 +208,15 @@ class Entity {
             0
         )
         
+    }
+    
+}
+
+extension GLKMatrix4 {
+    var array: [Float] {
+        return (0..<16).map { i in
+            self[i]
+        }
     }
     
 }
