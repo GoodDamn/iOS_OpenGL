@@ -36,5 +36,31 @@ public class OpenGL {
         
         return shader
     }
+ 
+    public static func createProgram(
+        _ vertexCode: String,
+        _ fragmentCode: String
+    ) -> GLuint {
+        
+        let mProgram = glCreateProgram()
+        
+        glAttachShader(
+            mProgram,
+            OpenGL.loadShader(
+                GL_VERTEX_SHADER,
+                vertexCode
+            )
+        )
+        
+        glAttachShader(
+            mProgram,
+            OpenGL.loadShader(
+                GL_FRAGMENT_SHADER,
+                fragmentCode
+            )
+        )
+        
+        return mProgram
+    }
     
 }

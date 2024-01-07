@@ -16,68 +16,82 @@ class Entity {
     """
     precision mediump float;
     void main() {
-        gl_FragColor = vec4(1.0,1.0,1.0,1.0);
+        float st = gl_FragCoord.x / 360.0;
+        gl_FragColor = vec4(1.0,st,0.0,1.0);
     }
     """
     
     private final let mVertexCode =
     """
     attribute vec4 position;
-    attribute vec3 color;
-    uniform mat4 proj;
-    uniform mat4 model;
     void main() {
-        gl_Position = proj * model * position;
+        vec4 p = position;
+        gl_Position = p;
     }
     """
     
     private var mObject: Object3d
     
-    private var mProjection: [Float]
-    private var modelViewMatrix: [Float]
-    
     private var mPosition: GLuint
-    private var mProj: GLuint
-    private var modelView: GLuint
+    
+    private var mVertexBuffer: GLuint = 1
+    private var mIndexBuffer: GLuint = 1
     
     private var mProgram: GLuint
     
     init(
-        objectPath: String,
-        projection: [Float]
+        objectPath: String
     ) {
-       
-        mProjection = projection
+        
         let fm = FileManager.default
         
         let data = fm.contents(
             atPath: objectPath
         )!
         
-        mObject = Loader.obj(
+        /*mObject = Loader.obj(
             data: data
-        )!
+        )!*/
         
-        
-        mProgram = glCreateProgram()
-        
-        glAttachShader(
-            mProgram,
-            OpenGL.loadShader(
-                GL_VERTEX_SHADER,
-                mVertexCode
-            )
+        mObject = Object3d(
+            vertices: [
+                1.0, -1.0, 0.0, // right bottom
+                0.5, 0.5, 0.0, // right top
+                -1.0, 1.0, 0.0, // left top
+                -1.0, -1.0, 0.0 // left bottom
+           ],
+           indices: [
+              0,1,2,
+              2,3,0
+           ]
         )
         
-        glAttachShader(
-            mProgram,
-            OpenGL.loadShader(
-                GL_FRAGMENT_SHADER,
+        mProgram = OpenGL
+            .createProgram(
+                mVertexCode,
                 mFragmentCode
             )
-        )
         
         glLinkProgram(mProgram)
+        
+        // Generate vertex buffer
+        glGenBuffers(
+            1,
+            &mVertexBuffer
+        )
+        
+        glBindBuffer(
+            GLenum(GL_ARRAY_BUFFER),
+            mVertexBuffer
+        )
+        
+        glBufferData(
+            GLenum(GL_ARRAY_BUFFER),
+            GLsizeiptr(mObject
+                .vertices
+                .count * 4),
+            mObject.vertices,
+            GLenum(GL_STATIC_DRAW))
         
         mPosition = GLuint(
             glGetAttribLocation(
@@ -86,67 +100,56 @@ class Entity {
             )
         )
         
-        mProj = GLuint(
-            glGetUniformLocation(
-                mProgram,
-                "proj"
-            )
+        // Generate index buffer
+        
+        glGenBuffers(
+            GLsizei(1),
+            &mIndexBuffer
         )
         
-        modelView = GLuint(
-            glGetUniformLocation(
-                mProgram,
-                "model"
-            )
+        glBindBuffer(
+            GLenum(GL_ELEMENT_ARRAY_BUFFER),
+            mIndexBuffer
         )
-        modelViewMatrix = ([Float])(
-            repeating: 0,
-            count: 16
-        )
-        print(TAG, mProjection)
-        modelViewMatrix = Matrix
-            .identity(
-                modelViewMatrix
-            )
         
+        glBufferData(
+            GLenum(GL_ELEMENT_ARRAY_BUFFER),
+            GLsizeiptr(mObject.indices.count * 2),
+            mObject.indices,
+            GLenum(GL_STATIC_DRAW))
     }
         
     func draw() {
         
         glUseProgram(mProgram)
         
-        glVertexAttribPointer(
-            mPosition,
-            GLint(3),
-            GLenum(GL_FLOAT),
-            GLboolean(GL_FALSE),
-            GLsizei(0),
-            mObject.vertices
-        )
-        
         glEnableVertexAttribArray(
             mPosition
         )
         
-        glUniformMatrix4fv(
-            GLint(mProj),
-            GLsizei(1),
+        glVertexAttribPointer(
+            mPosition,
+            GLint(3), // size
+            GLenum(GL_FLOAT),
             GLboolean(GL_FALSE),
-            mProjection
+            GLsizei(3 * 4), // size * sizeof(type)
+            nil
+        )
+    
+        glBindBuffer(
+            GLenum(GL_ARRAY_BUFFER),
+            mVertexBuffer
         )
         
-        glUniformMatrix4fv(
-            GLint(modelView),
-            GLsizei(1),
-            GLboolean(GL_FALSE),
-            modelViewMatrix
-        )
+        glBindBuffer(
+            GLenum(GL_ELEMENT_ARRAY_BUFFER),
+            mIndexBuffer)
         
         glDrawElements(
             GLenum(GL_TRIANGLES),
             GLsizei(mObject.indices.count),
             GLenum(GL_UNSIGNED_SHORT),
-            mObject.indices
+            nil
         )
         
     }

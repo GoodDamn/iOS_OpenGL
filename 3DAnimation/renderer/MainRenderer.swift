@@ -16,11 +16,6 @@ class MainRenderer {
     
     private var mEntities: [Entity]? = nil
     
-    private var mProjection = ([Float])(
-        repeating: 0,
-        count: 16
-    )
-    
     func onCreate(
         _ frame: CGRect
     ) {
@@ -30,34 +25,12 @@ class MainRenderer {
             .appendingPathComponent(
                 "Box.obj"
             )
-        
-        mProjection = Matrix
-            .perspect(
-                mProjection,
-                45,
-                Float(frame.width / frame.height),
-                0.1,
-                100
-            )
-        
-        print(TAG, mProjection)
-        
+                
         mEntities = [
             Entity(
-                objectPath: p.path,
-                projection: mProjection
+                objectPath: p.path
             )
         ]
-        
-        /*glEnable(
-            GLenum(
-                GL_DEPTH_TEST
-            )
-        )*/
-        
-        glMatrixMode(
-            GLenum(GL_MODELVIEW)
-        )
         
         mIsCreated = true
     }
