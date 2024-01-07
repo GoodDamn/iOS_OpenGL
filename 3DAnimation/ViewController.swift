@@ -72,7 +72,6 @@ class ViewController
         _ view: GLKView,
         drawIn rect: CGRect
     ) {
-        print(TAG, "glkView")
         if !mRenderer.isCreated() {
             mRenderer.onCreate(mPosRender)
         }
@@ -95,7 +94,8 @@ extension ViewController:
     func glkViewControllerUpdate(
         _ controller: GLKViewController
     ) {
-        mRenderer.onUpdate()
+        mRenderer
+            .onUpdate()
         controller
             .view!
             .subviews[0]

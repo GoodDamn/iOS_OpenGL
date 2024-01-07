@@ -184,33 +184,32 @@ class Entity {
     }
     
     func onUpdate() {
-        let of = sinf(
+        /*let of = sinf(
             Float(
                 CACurrentMediaTime()
             )
-        )
-        
-        print(TAG, "UPDATE():", CACurrentMediaTime(),
-            of)
-        
-        let durationSec = 2
+        ) * 0.5*/
         
         modelView = GLKMatrix4Translate(
             modelView,
-            of,
+            0.01,
             0,
             0
         )
     }
     
-    func draw() {
+    func draw(
+        cameraView: GLKMatrix4
+    ) {
         glUseProgram(mProgram)
         
         glUniformMatrix4fv(
             modelViewUniform,
             GLsizei(1),
             GLboolean(0),
-            modelView.array
+            GLKMatrix4Multiply(
+                cameraView,
+                modelView).array
         )
         
         glBindVertexArrayOES(

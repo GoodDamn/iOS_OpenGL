@@ -16,6 +16,8 @@ class MainRenderer {
     
     private var mEntities: [Entity]? = nil
     
+    private var mCameraView: GLKMatrix4!
+    
     func onCreate(
         _ frame: CGRect
     ) {
@@ -26,6 +28,12 @@ class MainRenderer {
                 "Box.obj"
             )
                 
+        mCameraView = GLKMatrix4MakeTranslation(
+            0.0,
+            -1.0,
+            0.0
+        )
+        
         mEntities = [
             Entity(
                 objectPath: p.path
@@ -52,7 +60,9 @@ class MainRenderer {
             GLint(frame.height))
                 
         mEntities!.forEach { e in
-            e.draw()
+            e.draw(
+                cameraView: mCameraView
+            )
         }
     }
     
