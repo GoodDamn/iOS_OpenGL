@@ -16,6 +16,7 @@ class MainRenderer {
     
     private var mEntities: [Entity]? = nil
     
+    private var mProjection: GLKMatrix4!
     private var mCameraView: GLKMatrix4!
     
     func onCreate(
@@ -29,9 +30,16 @@ class MainRenderer {
             )
                 
         mCameraView = GLKMatrix4MakeTranslation(
-            0.0,
             -1.0,
-            0.0
+            -1.0,
+            -5.0
+        )
+        
+        mProjection = GLKMatrix4MakePerspective(
+            85.0 / 180 * .pi,
+            Float(frame.width / frame.height),
+            1,
+            150
         )
         
         mEntities = [
@@ -59,9 +67,12 @@ class MainRenderer {
             GLint(frame.width),
             GLint(frame.height))
                 
+        let proj = mProjection.array
+        
         mEntities!.forEach { e in
             e.draw(
-                cameraView: mCameraView
+                cameraView: mCameraView,
+                projection: proj
             )
         }
     }

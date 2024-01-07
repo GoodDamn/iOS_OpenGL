@@ -11,10 +11,12 @@
 		2506224A2B492A7D00FCD636 /* OpenGL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250622492B492A7D00FCD636 /* OpenGL.swift */; };
 		2506224D2B49451000FCD636 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2506224C2B49451000FCD636 /* Loader.swift */; };
 		2506224F2B49459C00FCD636 /* Object3d.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2506224E2B49459C00FCD636 /* Object3d.swift */; };
-		250622532B495C2A00FCD636 /* Box.obj in Resources */ = {isa = PBXBuildFile; fileRef = 250622512B495C2A00FCD636 /* Box.obj */; };
-		250622542B495C2A00FCD636 /* Sphere.obj in Resources */ = {isa = PBXBuildFile; fileRef = 250622522B495C2A00FCD636 /* Sphere.obj */; };
 		250622562B49B37B00FCD636 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250622552B49B37B00FCD636 /* Matrix.swift */; };
 		250622592B49BABF00FCD636 /* MainRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250622582B49BABF00FCD636 /* MainRenderer.swift */; };
+		250622612B4B102E00FCD636 /* box.png in Resources */ = {isa = PBXBuildFile; fileRef = 250622602B4B102E00FCD636 /* box.png */; };
+		250622632B4B108800FCD636 /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250622622B4B108800FCD636 /* Texture.swift */; };
+		250622642B4B117600FCD636 /* Box.obj in Resources */ = {isa = PBXBuildFile; fileRef = 2506225D2B4B0F9700FCD636 /* Box.obj */; };
+		250622652B4B117600FCD636 /* Sphere.obj in Resources */ = {isa = PBXBuildFile; fileRef = 2506225E2B4B0F9700FCD636 /* Sphere.obj */; };
 		25EDF4AF2B486E3C002A6CC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4AE2B486E3C002A6CC6 /* AppDelegate.swift */; };
 		25EDF4B12B486E3C002A6CC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4B02B486E3C002A6CC6 /* SceneDelegate.swift */; };
 		25EDF4B32B486E3C002A6CC6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4B22B486E3C002A6CC6 /* ViewController.swift */; };
@@ -48,10 +50,12 @@
 		250622492B492A7D00FCD636 /* OpenGL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenGL.swift; sourceTree = "<group>"; };
 		2506224C2B49451000FCD636 /* Loader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
 		2506224E2B49459C00FCD636 /* Object3d.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object3d.swift; sourceTree = "<group>"; };
-		250622512B495C2A00FCD636 /* Box.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Box.obj; path = "../../../../../../../Volumes/VMware Shared Folders/SHARED_FOLDER/Box.obj"; sourceTree = "<group>"; };
-		250622522B495C2A00FCD636 /* Sphere.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Sphere.obj; path = "../../../../../../../Volumes/VMware Shared Folders/SHARED_FOLDER/Sphere.obj"; sourceTree = "<group>"; };
 		250622552B49B37B00FCD636 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		250622582B49BABF00FCD636 /* MainRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRenderer.swift; sourceTree = "<group>"; };
+		2506225D2B4B0F9700FCD636 /* Box.obj */ = {isa = PBXFileReference; lastKnownFileType = text; name = Box.obj; path = "../../../../../../../../Volumes/VMware Shared Folders/SHARED_FOLDER/Box.obj"; sourceTree = "<group>"; };
+		2506225E2B4B0F9700FCD636 /* Sphere.obj */ = {isa = PBXFileReference; lastKnownFileType = text; name = Sphere.obj; path = "../../../../../../../../Volumes/VMware Shared Folders/SHARED_FOLDER/Sphere.obj"; sourceTree = "<group>"; };
+		250622602B4B102E00FCD636 /* box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = box.png; path = "../../../../../../../../Volumes/VMware Shared Folders/SHARED_FOLDER/box.png"; sourceTree = "<group>"; };
+		250622622B4B108800FCD636 /* Texture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
 		25EDF4AB2B486E3C002A6CC6 /* 3DAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 3DAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25EDF4AE2B486E3C002A6CC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25EDF4B02B486E3C002A6CC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +101,7 @@
 			children = (
 				250622442B490ABB00FCD636 /* Entity.swift */,
 				2506224E2B49459C00FCD636 /* Object3d.swift */,
+				250622622B4B108800FCD636 /* Texture.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -121,8 +126,8 @@
 		250622502B495BE200FCD636 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				250622512B495C2A00FCD636 /* Box.obj */,
-				250622522B495C2A00FCD636 /* Sphere.obj */,
+				2506225F2B4B0FB700FCD636 /* textures */,
+				2506225A2B4B0F8300FCD636 /* objs */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -133,6 +138,23 @@
 				250622582B49BABF00FCD636 /* MainRenderer.swift */,
 			);
 			path = renderer;
+			sourceTree = "<group>";
+		};
+		2506225A2B4B0F8300FCD636 /* objs */ = {
+			isa = PBXGroup;
+			children = (
+				2506225D2B4B0F9700FCD636 /* Box.obj */,
+				2506225E2B4B0F9700FCD636 /* Sphere.obj */,
+			);
+			path = objs;
+			sourceTree = "<group>";
+		};
+		2506225F2B4B0FB700FCD636 /* textures */ = {
+			isa = PBXGroup;
+			children = (
+				250622602B4B102E00FCD636 /* box.png */,
+			);
+			path = textures;
 			sourceTree = "<group>";
 		};
 		25EDF4A22B486E3C002A6CC6 = {
@@ -295,11 +317,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				250622642B4B117600FCD636 /* Box.obj in Resources */,
+				250622652B4B117600FCD636 /* Sphere.obj in Resources */,
 				25EDF4BB2B486E3E002A6CC6 /* LaunchScreen.storyboard in Resources */,
-				250622532B495C2A00FCD636 /* Box.obj in Resources */,
 				25EDF4B82B486E3E002A6CC6 /* Assets.xcassets in Resources */,
-				250622542B495C2A00FCD636 /* Sphere.obj in Resources */,
 				25EDF4B62B486E3D002A6CC6 /* Main.storyboard in Resources */,
+				250622612B4B102E00FCD636 /* box.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				250622452B490ABB00FCD636 /* Entity.swift in Sources */,
+				250622632B4B108800FCD636 /* Texture.swift in Sources */,
 				2506224D2B49451000FCD636 /* Loader.swift in Sources */,
 				250622592B49BABF00FCD636 /* MainRenderer.swift in Sources */,
 				25EDF4B32B486E3C002A6CC6 /* ViewController.swift in Sources */,

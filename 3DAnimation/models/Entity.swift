@@ -26,10 +26,11 @@ class Entity {
     attribute vec4 position;
     attribute vec4 color;
     
+    uniform mat4 projection;
     uniform mat4 model;
     
     void main() {
-        gl_Position = model * position;
+        gl_Position = projection * model * position;
     }
     """
     
@@ -40,6 +41,7 @@ class Entity {
     private var mPosition: GLuint
     
     private var modelViewUniform: GLint = 1
+    private var mProjectUniform: GLint = 1
     
     private var mVertexBuffer: GLuint = 1
     private var mIndexBuffer: GLuint = 1
@@ -58,22 +60,9 @@ class Entity {
             atPath: objectPath
         )!
         
-        /*mObject = Loader.obj(
+        mObject = Loader.obj(
             data: data
-        )!*/
-        
-        mObject = Object3d(
-            vertices: [
-                1.0, -1.0, 0.0, // right bottom
-                0.5, 0.5, 0.0, // right top
-                -1.0, 1.0, 0.0, // left top
-                -1.0, -1.0, 0.0 // left bottom
-           ],
-           indices: [
-              0,1,2,
-              2,3,0
-           ]
-        )
+        )!
         
         mProgram = OpenGL
             .createProgram(
@@ -86,6 +75,11 @@ class Entity {
         modelViewUniform = glGetUniformLocation(
             mProgram,
             "model"
+        )
+        
+        mProjectUniform = glGetUniformLocation(
+            mProgram,
+            "projection"
         )
         
         // Generate VAO and bind a content to it
@@ -145,7 +139,6 @@ class Entity {
         )
         
         // Enable vertex attributes
-        
         glEnableVertexAttribArray(
             mPosition
         )
@@ -184,24 +177,27 @@ class Entity {
     }
     
     func onUpdate() {
-        /*let of = sinf(
-            Float(
-                CACurrentMediaTime()
-            )
-        ) * 0.5*/
         
-        modelView = GLKMatrix4Translate(
+        modelView = GLKMatrix4Rotate(
             modelView,
-            0.01,
-            0,
-            0
+            GLKMathDegreesToRadians(85.0),
+            1.0,
+            0.0,
+            0.0
         )
     }
     
     func draw(
-        cameraView: GLKMatrix4
+        cameraView: GLKMatrix4,
+        projection: [Float]
     ) {
         glUseProgram(mProgram)
+        
+        glUniformMatrix4fv(
+            mProjectUniform,
+            GLsizei(1),
+            GLboolean(0),
+            projection)
         
         glUniformMatrix4fv(
             modelViewUniform,

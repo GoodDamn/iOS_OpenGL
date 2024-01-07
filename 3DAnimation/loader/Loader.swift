@@ -148,6 +148,8 @@ class Loader {
         
         return Object3d(
             vertices: vertices,
+            normals: normalss,
+            texCoords: texCoords,
             indices: indices
         )
         

@@ -1,0 +1,87 @@
+//
+//  Texture.swift
+//  3DAnimation
+//
+//  Created by GoodDamn on 07/01/2024.
+//
+
+import Foundation
+import GLKit
+
+class Texture {
+    
+    var texId: GLuint = 0
+    
+    init(
+        data: Data
+    ) {
+        guard let image = UIImage(
+            data: data
+        )?.cgImage else {
+            return
+        }
+        
+        let width = image.width
+        let height = image.height
+        
+        let spriteData = calloc(
+            width * height * 4,
+            1
+        )
+        
+        let spriteContext = CGContext(
+            data: spriteData,
+            width: width,
+            height: height,
+            bitsPerComponent: 8,
+            bytesPerRow: width * 4,
+            space: image.colorSpace!,
+            bitmapInfo: CGImageAlphaInfo
+                .premultipliedLast
+                .rawValue
+        )
+        
+        spriteContext!.draw(
+            image,
+            in: CGRect(
+                x: 0,
+                y: 0,
+                width: width,
+                height: height
+            )
+        )
+        
+        // Auto memory management CGContextRelease
+        
+        glGenTextures(
+            GLsizei(1),
+            &texId
+        )
+        
+        glBindTexture(
+            GLenum(GL_TEXTURE_2D),
+            texId
+        )
+        
+        glTexParameteri(
+            GLenum(GL_TEXTURE_2D),
+            GLenum(GL_TEXTURE_MIN_FILTER),
+            GLint(GL_NEAREST)
+        )
+        
+        glTexImage2D(
+            GLenum(GL_TEXTURE_2D),
+            0,
+            GL_RGBA,
+            GLsizei(width),
+            GLsizei(height),
+            0,
+            GLenum(GL_RGBA),
+            GLenum(GL_UNSIGNED_BYTE),
+            spriteData!
+        )
+        
+        free(spriteData)
+    }
+    
+}

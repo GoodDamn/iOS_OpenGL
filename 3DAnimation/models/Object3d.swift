@@ -9,6 +9,8 @@ import Foundation
 import GLKit
 
 struct Object3d {
-    var vertices: [GLfloat]
-    var indices: [GLshort]
+    let vertices: [GLfloat]
+    let normals: [GLfloat]
+    let texCoords: [GLfloat]
+    let indices: [GLshort]
 }
