@@ -13,7 +13,26 @@ class Texture {
     var texId: GLuint = 0
     
     init(
+        assetName: String
+    ) {
+        let fm = FileManager.default
+        
+        let url = Bundle.main.resourceURL!.appendingPathComponent(assetName)
+        let data = fm.contents(
+            atPath: url.path
+        )!
+        
+        loadTexture(data)
+    }
+    
+    init(
         data: Data
+    ) {
+        loadTexture(data)
+    }
+ 
+    private func loadTexture(
+        _ data: Data
     ) {
         guard let image = UIImage(
             data: data

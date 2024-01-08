@@ -11,7 +11,29 @@ import GLKit
 class Loader {
     
     public static func obj(
+        assetName: String
+    ) -> Object3d? {
+        
+        let fm = FileManager.default
+        
+        let url = Bundle.main.resourceURL!
+            .appendingPathComponent(assetName)
+        
+        let data = fm.contents(
+            atPath: url.path
+        )!
+        
+        return loadObj(data)
+    }
+    
+    public static func obj(
         data: Data
+    ) -> Object3d? {
+        return loadObj(data)
+    }
+    
+    private static func loadObj(
+        _ data: Data
     ) -> Object3d? {
         
         guard let d = String(
@@ -114,13 +136,13 @@ class Loader {
             )
             
             i = 2 * (Int(parts[1])! - 1)
-            texCoords.append(
+            vertices.append(
                 GLfloat(
                     textures[i]
                 )
             )
             i += 1
-            texCoords.append(
+            vertices.append(
                 GLfloat(
                     textures[i]
                 )

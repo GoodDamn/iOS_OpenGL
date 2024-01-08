@@ -22,17 +22,10 @@ class MainRenderer {
     func onCreate(
         _ frame: CGRect
     ) {
-        let p = Bundle
-            .main
-            .resourceURL!
-            .appendingPathComponent(
-                "Box.obj"
-            )
-                
         mCameraView = GLKMatrix4MakeTranslation(
             -1.0,
-            -1.0,
-            -5.0
+             -1.0,
+             -5.0
         )
         
         mProjection = GLKMatrix4MakePerspective(
@@ -44,11 +37,14 @@ class MainRenderer {
         
         mEntities = [
             Entity(
-                objectPath: p.path
+                objectName: "Box.obj",
+                textureName: "box.png"
             )
         ]
         
         mIsCreated = true
+            
+        glEnable(GLenum(GL_DEPTH_TEST))
     }
     
     func onDraw(
@@ -58,7 +54,7 @@ class MainRenderer {
         glClear(
             GLbitfield(
                 GL_COLOR_BUFFER_BIT
-            )
+            ) | GLbitfield(GL_DEPTH_BUFFER_BIT)
         )
         
         glViewport(

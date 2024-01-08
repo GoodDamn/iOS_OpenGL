@@ -15,9 +15,13 @@ class Entity {
     private final let mFragmentCode =
     """
     precision mediump float;
+    
+    varying lowp vec2 texCoordOut;
+    uniform sampler2D texture;
+    
     void main() {
         float a = gl_FragCoord.x / 1179.0;
-        gl_FragColor = vec4(1.0-a,a,0.0,1.0);
+        gl_FragColor = vec4(1.0,1.0,1.0,1.0) * texture2D(texture, texCoordOut);
     }
     """
     
@@ -26,19 +30,28 @@ class Entity {
     attribute vec4 position;
     attribute vec4 color;
     
+    attribute vec2 texCoordIn;
+    varying lowp vec2 texCoordOut;
+    
     uniform mat4 projection;
     uniform mat4 model;
     
     void main() {
         gl_Position = projection * model * position;
+        texCoordOut = texCoordIn;
     }
     """
     
     private var mObject: Object3d
+    private var mTexture: Texture
     
     private var modelView = GLKMatrix4Identity
     
     private var mPosition: GLuint
+    
+    private var mAttrTexCoord: GLuint
+    
+    private var mTextureUniform: GLint = 1
     
     private var modelViewUniform: GLint = 1
     private var mProjectUniform: GLint = 1
@@ -51,18 +64,17 @@ class Entity {
     private var mProgram: GLuint
     
     init(
-        objectPath: String
+        objectName: String,
+        textureName: String
     ) {
         
-        let fm = FileManager.default
-        
-        let data = fm.contents(
-            atPath: objectPath
-        )!
-        
         mObject = Loader.obj(
-            data: data
+            assetName: objectName
         )!
+        
+        mTexture = Texture(
+            assetName: textureName
+        )
         
         mProgram = OpenGL
             .createProgram(
@@ -71,6 +83,11 @@ class Entity {
             )
         
         glLinkProgram(mProgram)
+        
+        mTextureUniform = glGetUniformLocation(
+            mProgram,
+            "texture"
+        )
         
         modelViewUniform = glGetUniformLocation(
             mProgram,
@@ -112,6 +129,12 @@ class Entity {
             mObject.vertices,
             GLenum(GL_STATIC_DRAW))
         
+        mAttrTexCoord = GLuint(
+            glGetAttribLocation(
+                mProgram,
+                "texCoordIn")
+        )
+        
         mPosition = GLuint(
             glGetAttribLocation(
                 mProgram,
@@ -148,7 +171,21 @@ class Entity {
             GLint(3), // size
             GLenum(GL_FLOAT),
             GLboolean(GL_FALSE),
-            GLsizei(3 * 4), // size * sizeof(type)
+            GLsizei(5 * 4), // size * sizeof(type)
+            nil
+        )
+        
+        
+        glEnableVertexAttribArray(
+            mAttrTexCoord
+        )
+        
+        glVertexAttribPointer(
+            mAttrTexCoord,
+            GLint(2),
+            GLenum(GL_FLOAT),
+            GLboolean(GL_FALSE),
+            GLsizei(5 * 4),
             nil
         )
         
@@ -218,6 +255,19 @@ class Entity {
             GLenum(GL_UNSIGNED_SHORT),
             nil
         )
+        
+        glActiveTexture(
+            GLenum(GL_TEXTURE_2D)
+        )
+        
+        glBindTexture(
+            GLenum(GL_TEXTURE_2D),
+            mTexture.texId
+        )
+        
+        glUniform1i(
+            mTextureUniform,
+            0)
         
         glBindVertexArrayOES(
             0
