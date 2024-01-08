@@ -51,7 +51,7 @@ class ViewController
         glView.context = context
                 
         glView.drawableColorFormat = .RGBA8888
-        glView.drawableDepthFormat = .format24
+        glView.drawableDepthFormat = .format16
         glView.drawableStencilFormat = .format8
         
         glView.drawableMultisample =

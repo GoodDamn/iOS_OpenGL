@@ -77,15 +77,35 @@ class Texture {
             &texId
         )
         
+        let t = GLenum(GL_TEXTURE_2D)
+        
         glBindTexture(
-            GLenum(GL_TEXTURE_2D),
+            t,
             texId
         )
         
         glTexParameteri(
-            GLenum(GL_TEXTURE_2D),
+            t,
             GLenum(GL_TEXTURE_MIN_FILTER),
             GLint(GL_NEAREST)
+        )
+        
+        glTexParameteri(
+            t,
+            GLenum(GL_TEXTURE_MAG_FILTER),
+            GL_LINEAR
+        )
+        
+        glTexParameteri(
+            t,
+            GLenum(GL_TEXTURE_WRAP_S),
+            GL_CLAMP_TO_EDGE
+        )
+        
+        glTexParameteri(
+            t,
+            GLenum(GL_TEXTURE_WRAP_T),
+            GL_CLAMP_TO_EDGE
         )
         
         glTexImage2D(

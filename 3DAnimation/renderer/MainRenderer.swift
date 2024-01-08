@@ -37,13 +37,13 @@ class MainRenderer {
         
         mEntities = [
             Entity(
-                objectName: "Box.obj",
+                objectName: "sheep.obj",
                 textureName: "box.png"
             )
         ]
         
         mIsCreated = true
-            
+        
         glEnable(GLenum(GL_DEPTH_TEST))
     }
     

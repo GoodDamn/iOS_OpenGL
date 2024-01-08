@@ -10,6 +10,8 @@ import GLKit
 
 class Loader {
     
+    private static let TAG = "Loader:"
+    
     public static func obj(
         assetName: String
     ) -> Object3d? {
@@ -63,13 +65,13 @@ class Loader {
             switch (c[0]) {
             case "v":
                 vert.append(
+                    Float(c[1])!
+                )
+                vert.append(
                     Float(c[2])!
                 )
                 vert.append(
                     Float(c[3])!
-                )
-                vert.append(
-                    Float(c[4])!
                 )
                 break
             case "vn":
@@ -85,10 +87,10 @@ class Loader {
                 break
             case "vt":
                 textures.append(
-                    Float(c[2])!
+                    Float(c[1])!
                 )
                 textures.append(
-                    Float(c[3])!
+                    Float(c[2])!
                 )
                 break
             case "f":
@@ -104,19 +106,19 @@ class Loader {
         
         var normalss:[GLfloat] = []
         var vertices:[GLfloat] = []
-        var texCoords:[GLfloat] = []
+        //var texCoords:[GLfloat] = []
         
         for j in 0..<faces.count {
             indices.append(GLshort(UInt16(j)))
-            var parts = faces[j]
+            let parts = faces[j]
                 .components(
                     separatedBy: "/"
                 )
             
             let vertexIndex = Int(parts[0])! - 1
             
-            
             var i = 3 * vertexIndex
+            
             vertices.append(
                 GLfloat(
                     vert[i]
@@ -135,6 +137,7 @@ class Loader {
                 )
             )
             
+            // Texture coords
             i = 2 * (Int(parts[1])! - 1)
             vertices.append(
                 GLfloat(
@@ -171,7 +174,6 @@ class Loader {
         return Object3d(
             vertices: vertices,
             normals: normalss,
-            texCoords: texCoords,
             indices: indices
         )
         

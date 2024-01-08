@@ -20,7 +20,6 @@ class Entity {
     uniform sampler2D texture;
     
     void main() {
-        float a = gl_FragCoord.x / 1179.0;
         gl_FragColor = vec4(1.0,1.0,1.0,1.0) * texture2D(texture, texCoordOut);
     }
     """
@@ -171,7 +170,7 @@ class Entity {
             GLint(3), // size
             GLenum(GL_FLOAT),
             GLboolean(GL_FALSE),
-            GLsizei(5 * 4), // size * sizeof(type)
+            GLsizei(5 * 4), // stride
             nil
         )
         
@@ -186,7 +185,7 @@ class Entity {
             GLenum(GL_FLOAT),
             GLboolean(GL_FALSE),
             GLsizei(5 * 4),
-            nil
+            UnsafeRawPointer(bitPattern: 3 * 4)
         )
         
         glBindVertexArrayOES(
@@ -211,17 +210,24 @@ class Entity {
             0
         )
         
+        /*modelView = GLKMatrix4Scale(
+            modelView,
+            0.14,
+            0.14,
+            0.14
+        )*/
+        
     }
     
     func onUpdate() {
         
-        modelView = GLKMatrix4Rotate(
+        /*modelView = GLKMatrix4Rotate(
             modelView,
             GLKMathDegreesToRadians(85.0),
             1.0,
             0.0,
             0.0
-        )
+        )*/
     }
     
     func draw(
