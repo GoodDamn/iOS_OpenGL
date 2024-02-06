@@ -59,9 +59,11 @@ class Loader {
         
         lines.forEach {
             it in
-            let c = it.components(
-                separatedBy: .whitespaces
+            let c = it.split(
+                regex: "[ ]+"
             )
+            
+            print("Loader:",c)
             switch (c[0]) {
             case "v":
                 vert.append(

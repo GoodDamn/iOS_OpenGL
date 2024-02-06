@@ -20,7 +20,7 @@ class Entity {
     uniform sampler2D texture;
     
     void main() {
-        gl_FragColor = vec4(1.0,1.0,1.0,1.0) * texture2D(texture, texCoordOut);
+        gl_FragColor = texture2D(texture, texCoordOut);
     }
     """
     

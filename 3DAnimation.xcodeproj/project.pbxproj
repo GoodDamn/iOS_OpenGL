@@ -13,12 +13,10 @@
 		2506224F2B49459C00FCD636 /* Object3d.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2506224E2B49459C00FCD636 /* Object3d.swift */; };
 		250622562B49B37B00FCD636 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250622552B49B37B00FCD636 /* Matrix.swift */; };
 		250622592B49BABF00FCD636 /* MainRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250622582B49BABF00FCD636 /* MainRenderer.swift */; };
-		250622612B4B102E00FCD636 /* box.png in Resources */ = {isa = PBXBuildFile; fileRef = 250622602B4B102E00FCD636 /* box.png */; };
 		250622632B4B108800FCD636 /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250622622B4B108800FCD636 /* Texture.swift */; };
-		250622642B4B117600FCD636 /* Box.obj in Resources */ = {isa = PBXBuildFile; fileRef = 2506225D2B4B0F9700FCD636 /* Box.obj */; };
-		250622652B4B117600FCD636 /* Sphere.obj in Resources */ = {isa = PBXBuildFile; fileRef = 2506225E2B4B0F9700FCD636 /* Sphere.obj */; };
-		250622672B4BFFEE00FCD636 /* sheep.obj in Resources */ = {isa = PBXBuildFile; fileRef = 250622662B4BFFEE00FCD636 /* sheep.obj */; };
-		250622692B4C03F600FCD636 /* sheep_mine.obj in Resources */ = {isa = PBXBuildFile; fileRef = 250622682B4C03F600FCD636 /* sheep_mine.obj */; };
+		254AA1152B72A33E00853B17 /* box.png in Resources */ = {isa = PBXBuildFile; fileRef = 254AA1142B72A33E00853B17 /* box.png */; };
+		254AA1172B72A34600853B17 /* box.obj in Resources */ = {isa = PBXBuildFile; fileRef = 254AA1162B72A34600853B17 /* box.obj */; };
+		254AA11B2B72A4A100853B17 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AA11A2B72A4A100853B17 /* String.swift */; };
 		25EDF4AF2B486E3C002A6CC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4AE2B486E3C002A6CC6 /* AppDelegate.swift */; };
 		25EDF4B12B486E3C002A6CC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4B02B486E3C002A6CC6 /* SceneDelegate.swift */; };
 		25EDF4B32B486E3C002A6CC6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4B22B486E3C002A6CC6 /* ViewController.swift */; };
@@ -54,12 +52,10 @@
 		2506224E2B49459C00FCD636 /* Object3d.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object3d.swift; sourceTree = "<group>"; };
 		250622552B49B37B00FCD636 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
 		250622582B49BABF00FCD636 /* MainRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRenderer.swift; sourceTree = "<group>"; };
-		2506225D2B4B0F9700FCD636 /* Box.obj */ = {isa = PBXFileReference; lastKnownFileType = text; name = Box.obj; path = "../../../../../../../../Volumes/VMware Shared Folders/SHARED_FOLDER/Box.obj"; sourceTree = "<group>"; };
-		2506225E2B4B0F9700FCD636 /* Sphere.obj */ = {isa = PBXFileReference; lastKnownFileType = text; name = Sphere.obj; path = "../../../../../../../../Volumes/VMware Shared Folders/SHARED_FOLDER/Sphere.obj"; sourceTree = "<group>"; };
-		250622602B4B102E00FCD636 /* box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = box.png; path = "../../../../../../../../Volumes/VMware Shared Folders/SHARED_FOLDER/box.png"; sourceTree = "<group>"; };
 		250622622B4B108800FCD636 /* Texture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
-		250622662B4BFFEE00FCD636 /* sheep.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = sheep.obj; path = "../../../../../../../../Volumes/VMware Shared Folders/SHARED_FOLDER/sheep.obj"; sourceTree = "<group>"; };
-		250622682B4C03F600FCD636 /* sheep_mine.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = sheep_mine.obj; path = "../../../../../../../../Volumes/VMware Shared Folders/SHARED_FOLDER/sheep_mine.obj"; sourceTree = "<group>"; };
+		254AA1142B72A33E00853B17 /* box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = box.png; sourceTree = "<group>"; };
+		254AA1162B72A34600853B17 /* box.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = box.obj; path = "../../../../../../../../Volumes/VMware Shared Folders/SHARED_FOLDER/box.obj"; sourceTree = "<group>"; };
+		254AA11A2B72A4A100853B17 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		25EDF4AB2B486E3C002A6CC6 /* 3DAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 3DAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25EDF4AE2B486E3C002A6CC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25EDF4B02B486E3C002A6CC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,10 +143,7 @@
 		2506225A2B4B0F8300FCD636 /* objs */ = {
 			isa = PBXGroup;
 			children = (
-				250622682B4C03F600FCD636 /* sheep_mine.obj */,
-				250622662B4BFFEE00FCD636 /* sheep.obj */,
-				2506225D2B4B0F9700FCD636 /* Box.obj */,
-				2506225E2B4B0F9700FCD636 /* Sphere.obj */,
+				254AA1162B72A34600853B17 /* box.obj */,
 			);
 			path = objs;
 			sourceTree = "<group>";
@@ -158,9 +151,25 @@
 		2506225F2B4B0FB700FCD636 /* textures */ = {
 			isa = PBXGroup;
 			children = (
-				250622602B4B102E00FCD636 /* box.png */,
+				254AA1142B72A33E00853B17 /* box.png */,
 			);
 			path = textures;
+			sourceTree = "<group>";
+		};
+		254AA1182B72A48000853B17 /* other */ = {
+			isa = PBXGroup;
+			children = (
+				254AA1192B72A49400853B17 /* extensions */,
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
+		254AA1192B72A49400853B17 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				254AA11A2B72A4A100853B17 /* String.swift */,
+			);
+			path = extensions;
 			sourceTree = "<group>";
 		};
 		25EDF4A22B486E3C002A6CC6 = {
@@ -186,6 +195,7 @@
 		25EDF4AD2B486E3C002A6CC6 /* 3DAnimation */ = {
 			isa = PBXGroup;
 			children = (
+				254AA1182B72A48000853B17 /* other */,
 				250622572B49BAAC00FCD636 /* renderer */,
 				250622502B495BE200FCD636 /* resources */,
 				2506224B2B49450400FCD636 /* loader */,
@@ -323,14 +333,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				250622642B4B117600FCD636 /* Box.obj in Resources */,
-				250622652B4B117600FCD636 /* Sphere.obj in Resources */,
-				250622672B4BFFEE00FCD636 /* sheep.obj in Resources */,
 				25EDF4BB2B486E3E002A6CC6 /* LaunchScreen.storyboard in Resources */,
-				250622692B4C03F600FCD636 /* sheep_mine.obj in Resources */,
 				25EDF4B82B486E3E002A6CC6 /* Assets.xcassets in Resources */,
+				254AA1172B72A34600853B17 /* box.obj in Resources */,
 				25EDF4B62B486E3D002A6CC6 /* Main.storyboard in Resources */,
-				250622612B4B102E00FCD636 /* box.png in Resources */,
+				254AA1152B72A33E00853B17 /* box.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +371,7 @@
 				250622562B49B37B00FCD636 /* Matrix.swift in Sources */,
 				25EDF4B12B486E3C002A6CC6 /* SceneDelegate.swift in Sources */,
 				2506224A2B492A7D00FCD636 /* OpenGL.swift in Sources */,
+				254AA11B2B72A4A100853B17 /* String.swift in Sources */,
 				2506224F2B49459C00FCD636 /* Object3d.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

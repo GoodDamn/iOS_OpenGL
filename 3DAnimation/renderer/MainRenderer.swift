@@ -37,7 +37,7 @@ class MainRenderer {
         
         mEntities = [
             Entity(
-                objectName: "sheep.obj",
+                objectName: "box.obj",
                 textureName: "box.png"
             )
         ]
@@ -61,7 +61,8 @@ class MainRenderer {
             GLint(0),
             GLint(0),
             GLint(frame.width),
-            GLint(frame.height))
+            GLint(frame.height)
+        )
                 
         let proj = mProjection.array
         
