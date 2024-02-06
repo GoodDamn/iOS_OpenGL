@@ -210,24 +210,16 @@ class Entity {
             0
         )
         
-        /*modelView = GLKMatrix4Scale(
-            modelView,
-            0.14,
-            0.14,
-            0.14
-        )*/
-        
     }
     
     func onUpdate() {
-        
-        /*modelView = GLKMatrix4Rotate(
+        modelView = GLKMatrix4Translate(
             modelView,
-            GLKMathDegreesToRadians(85.0),
-            1.0,
-            0.0,
-            0.0
-        )*/
+            0.01,
+            0,
+            0
+        )
+        
     }
     
     func draw(
