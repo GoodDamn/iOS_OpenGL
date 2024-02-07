@@ -12,59 +12,6 @@ class Entity {
     
     private final let TAG = "Entity"
     
-    private final let mFragmentCode =
-    """
-    precision mediump float;
-
-    varying lowp vec2 texCoordOut;
-    varying lowp vec3 normalOut;
-
-    uniform sampler2D texture;
-
-    struct Light {
-        lowp vec3 color;
-        lowp float ambient;
-        lowp float diffIntensity;
-        lowp vec3 direction;
-    };
-
-    uniform Light light;
-
-    void main() {
-        
-        lowp vec3 ambColor = light.color * light.ambient;
-        
-        lowp vec3 normal = normalize(normalOut);
-        lowp float difFactor = max(-dot(normal, light.direction), 0.0);
-        lowp vec3 difColor = light.color * light.diffIntensity * difFactor;
-        
-        gl_FragColor = texture2D(texture, texCoordOut) * vec4(ambColor + difColor, 1.0);
-        
-    }
-
-    """
-    
-    private final let mVertexCode =
-    """
-    attribute vec4 position;
-    attribute vec4 color;
-    attribute vec2 texCoordIn;
-    attribute vec3 normalIn;
-
-    varying lowp vec2 texCoordOut;
-    varying lowp vec3 normalOut;
-
-    uniform mat4 projection;
-    uniform mat4 model;
-
-    void main() {
-        gl_Position = projection * model * position;
-        texCoordOut = texCoordIn;
-        normalOut = (model * vec4(normalIn, 0.0)).xyz;
-    }
-
-    """
-    
     private var mObject: Object3d
     private var mTexture: Texture
     
@@ -74,12 +21,6 @@ class Entity {
     private var mAttrTexCoord: GLuint
     private var mAttrNormal: GLuint
     
-    private var mTextureUniform: GLint = 1
-    private var mLightColorUniform: GLint = 1
-    private var mLightAmbientUniform: GLint = 1
-    private var mLightDirectionUniform: GLint = 1
-    private var mLightIntensityUniform: GLint = 1
-    
     private var modelViewUniform: GLint = 1
     private var mProjectUniform: GLint = 1
     
@@ -88,11 +29,10 @@ class Entity {
     
     private var mVertexArrayObject: GLuint = 1
     
-    private var mProgram: GLuint
-    
     init(
         objectName: String,
-        textureName: String
+        textureName: String,
+        program: GLuint
     ) {
         
         mObject = Loader.obj(
@@ -103,46 +43,17 @@ class Entity {
             assetName: textureName
         )
         
-        mProgram = OpenGL
-            .createProgram(
-                mVertexCode,
-                mFragmentCode
-            )
-        
-        glLinkProgram(mProgram)
-        
-        mTextureUniform = glGetUniformLocation(
-            mProgram,
-            "texture"
-        )
-        
-        mLightColorUniform = glGetUniformLocation(
-            mProgram,
-            "light.color"
-        )
-        
-        mLightAmbientUniform = glGetUniformLocation(
-            mProgram,
-            "light.ambient"
-        )
-        
-        mLightDirectionUniform = glGetUniformLocation(
-            mProgram,
-            "light.direction"
-        )
-        
-        mLightIntensityUniform = glGetUniformLocation(
-            mProgram,
-            "light.diffIntensity"
+        mTexture.setup(
+            program: program
         )
         
         modelViewUniform = glGetUniformLocation(
-            mProgram,
+            program,
             "model"
         )
         
         mProjectUniform = glGetUniformLocation(
-            mProgram,
+            program,
             "projection"
         )
         
@@ -180,20 +91,20 @@ class Entity {
         
         mAttrTexCoord = GLuint(
             glGetAttribLocation(
-                mProgram,
+                program,
                 "texCoordIn")
         )
         
         mAttrNormal = GLuint(
             glGetAttribLocation(
-                mProgram,
+                program,
                 "normalIn"
             )
         )
         
         mPosition = GLuint(
             glGetAttribLocation(
-                mProgram,
+                program,
                 "position"
             )
         )
@@ -282,29 +193,9 @@ class Entity {
         
     }
     
-    func onUpdate() {
-        
-        modelView = GLKMatrix4Translate(
-            modelView,
-            0.03,
-            0,
-            0
-        )
-        
-        modelView = GLKMatrix4Rotate(
-            modelView,
-            GLKMathDegreesToRadians(
-                1
-            ),
-            0.0,
-            1.0,
-            0.0
-        )
-        
-    }
+    func onUpdate() {}
     
     func draw() {
-        glUseProgram(mProgram)
         
         MainRenderer
             .mCamera
@@ -325,38 +216,7 @@ class Entity {
             nil
         )
         
-        mTexture.draw(
-            uniform: mTextureUniform
-        )
-        
-        glUniform3f(
-            mLightColorUniform,
-            GLfloat(1.0),
-            GLfloat(1.0),
-            GLfloat(1.0)
-        )
-        
-        
-        glUniform1f(
-            mLightAmbientUniform,
-            GLfloat(0.1)
-        )
-        
-        let normDirect = GLKVector3Normalize(
-            GLKVector3Make(0, 1, -1)
-        )
-        
-        glUniform3f(
-            mLightDirectionUniform,
-            normDirect.x,
-            normDirect.y,
-            normDirect.z
-        )
-        
-        glUniform1f(
-            mLightIntensityUniform,
-            GLfloat(0.5)
-        )
+        mTexture.draw()
         
         glBindVertexArrayOES(
             0

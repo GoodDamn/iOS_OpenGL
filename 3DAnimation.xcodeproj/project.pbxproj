@@ -20,6 +20,7 @@
 		254AA11E2B733B3800853B17 /* main.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 254AA11D2B733B3800853B17 /* main.glsl */; };
 		254AA1202B73449B00853B17 /* vert.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 254AA11F2B73449B00853B17 /* vert.glsl */; };
 		254AA1232B73652D00853B17 /* BaseCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AA1222B73652D00853B17 /* BaseCamera.swift */; };
+		254AA1262B736B2A00853B17 /* BaseLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AA1252B736B2A00853B17 /* BaseLight.swift */; };
 		25EDF4AF2B486E3C002A6CC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4AE2B486E3C002A6CC6 /* AppDelegate.swift */; };
 		25EDF4B12B486E3C002A6CC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4B02B486E3C002A6CC6 /* SceneDelegate.swift */; };
 		25EDF4B32B486E3C002A6CC6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4B22B486E3C002A6CC6 /* ViewController.swift */; };
@@ -62,6 +63,7 @@
 		254AA11D2B733B3800853B17 /* main.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.glsl; sourceTree = "<group>"; };
 		254AA11F2B73449B00853B17 /* vert.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = vert.glsl; sourceTree = "<group>"; };
 		254AA1222B73652D00853B17 /* BaseCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCamera.swift; sourceTree = "<group>"; };
+		254AA1252B736B2A00853B17 /* BaseLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLight.swift; sourceTree = "<group>"; };
 		25EDF4AB2B486E3C002A6CC6 /* 3DAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 3DAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25EDF4AE2B486E3C002A6CC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25EDF4B02B486E3C002A6CC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 		254AA1182B72A48000853B17 /* other */ = {
 			isa = PBXGroup;
 			children = (
+				254AA1242B736B2000853B17 /* light */,
 				254AA1212B73652100853B17 /* camera */,
 				254AA1192B72A49400853B17 /* extensions */,
 			);
@@ -195,6 +198,14 @@
 				254AA1222B73652D00853B17 /* BaseCamera.swift */,
 			);
 			path = camera;
+			sourceTree = "<group>";
+		};
+		254AA1242B736B2000853B17 /* light */ = {
+			isa = PBXGroup;
+			children = (
+				254AA1252B736B2A00853B17 /* BaseLight.swift */,
+			);
+			path = light;
 			sourceTree = "<group>";
 		};
 		25EDF4A22B486E3C002A6CC6 = {
@@ -394,6 +405,7 @@
 				2506224D2B49451000FCD636 /* Loader.swift in Sources */,
 				254AA1232B73652D00853B17 /* BaseCamera.swift in Sources */,
 				250622592B49BABF00FCD636 /* MainRenderer.swift in Sources */,
+				254AA1262B736B2A00853B17 /* BaseLight.swift in Sources */,
 				25EDF4B32B486E3C002A6CC6 /* ViewController.swift in Sources */,
 				25EDF4AF2B486E3C002A6CC6 /* AppDelegate.swift in Sources */,
 				250622562B49B37B00FCD636 /* Matrix.swift in Sources */,

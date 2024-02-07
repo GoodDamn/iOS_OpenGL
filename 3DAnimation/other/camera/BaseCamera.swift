@@ -10,8 +10,8 @@ import GLKit.GLKMatrix4
 
 class BaseCamera {
     
-    private var modelCamera = GLKMatrix4()
-    private var mProjection = GLKMatrix4()
+    private var modelCamera: GLKMatrix4
+    private var mProjection: GLKMatrix4
     
     init(
         frame: CGRect
@@ -27,6 +27,19 @@ class BaseCamera {
             Float(frame.width / frame.height),
             1,
             150
+        )
+    }
+    
+    public final func addPosition(
+        x: Float,
+        y: Float,
+        z: Float
+    ) {
+        modelCamera = GLKMatrix4Translate(
+            modelCamera,
+            x,
+            y,
+            z
         )
     }
     

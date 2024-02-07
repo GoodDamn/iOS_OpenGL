@@ -10,7 +10,8 @@ import GLKit
 
 final class Texture {
     
-    var texId: GLuint = 0
+    private final var mId: GLuint = 0
+    private final var mTextureUniform: GLint = 1
     
     init(
         assetName: String
@@ -31,7 +32,34 @@ final class Texture {
         loadTexture(data)
     }
  
-    private func loadTexture(
+    public final func setup(
+        program: GLuint
+    ) {
+        mTextureUniform = glGetUniformLocation(
+            program,
+            "texture"
+        )
+        
+    }
+    
+    public final func draw() {
+        
+        glActiveTexture(
+            GLenum(GL_TEXTURE_2D)
+        )
+        
+        glBindTexture(
+            GLenum(GL_TEXTURE_2D),
+            mId
+        )
+        
+        glUniform1i(
+            mTextureUniform,
+            0
+        )
+    }
+    
+    private final func loadTexture(
         _ data: Data
     ) {
         guard let image = UIImage(
@@ -74,14 +102,14 @@ final class Texture {
         
         glGenTextures(
             GLsizei(1),
-            &texId
+            &mId
         )
         
         let t = GLenum(GL_TEXTURE_2D)
         
         glBindTexture(
             t,
-            texId
+            mId
         )
         
         glTexParameteri(
@@ -121,23 +149,6 @@ final class Texture {
         )
         
         free(spriteData)
-    }
-    
-    public final func draw(
-        uniform: GLint
-    ) {
-        glActiveTexture(
-            GLenum(GL_TEXTURE_2D)
-        )
-        
-        glBindTexture(
-            GLenum(GL_TEXTURE_2D),
-            texId
-        )
-        
-        glUniform1i(
-            uniform,
-            0)
     }
     
 }
