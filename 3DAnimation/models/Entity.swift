@@ -15,12 +15,23 @@ class Entity {
     private final let mFragmentCode =
     """
     precision mediump float;
-    
+
     varying lowp vec2 texCoordOut;
     uniform sampler2D texture;
-    
+
+    struct Light {
+        lowp vec3 color;
+        lowp float ambient;
+    };
+
+    uniform Light light;
+
     void main() {
-        gl_FragColor = texture2D(texture, texCoordOut);
+        
+        lowp vec4 ambColor = vec4(light.color, 1.0) * light.ambient;
+        
+        gl_FragColor = texture2D(texture, texCoordOut) * ambColor;
+        
     }
     """
     
@@ -51,6 +62,8 @@ class Entity {
     private var mAttrTexCoord: GLuint
     
     private var mTextureUniform: GLint = 1
+    private var mLightColorUniform: GLint = 1
+    private var mLightAmbientUniform: GLint = 1
     
     private var modelViewUniform: GLint = 1
     private var mProjectUniform: GLint = 1
@@ -86,6 +99,16 @@ class Entity {
         mTextureUniform = glGetUniformLocation(
             mProgram,
             "texture"
+        )
+        
+        mLightColorUniform = glGetUniformLocation(
+            mProgram,
+            "light.color"
+        )
+        
+        mLightAmbientUniform = glGetUniformLocation(
+            mProgram,
+            "light.ambient"
         )
         
         modelViewUniform = glGetUniformLocation(
@@ -266,6 +289,18 @@ class Entity {
         glUniform1i(
             mTextureUniform,
             0)
+        
+        glUniform3f(
+            mLightColorUniform,
+            GLfloat(1.0),
+            GLfloat(1.0),
+            GLfloat(1.0)
+        )
+        
+        glUniform1f(
+            mLightAmbientUniform,
+            GLfloat(1.0)
+        )
         
         glBindVertexArrayOES(
             0
