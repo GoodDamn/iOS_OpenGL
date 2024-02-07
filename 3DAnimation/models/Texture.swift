@@ -8,7 +8,7 @@
 import Foundation
 import GLKit
 
-class Texture {
+final class Texture {
     
     var texId: GLuint = 0
     
@@ -121,6 +121,23 @@ class Texture {
         )
         
         free(spriteData)
+    }
+    
+    public final func draw(
+        uniform: GLint
+    ) {
+        glActiveTexture(
+            GLenum(GL_TEXTURE_2D)
+        )
+        
+        glBindTexture(
+            GLenum(GL_TEXTURE_2D),
+            texId
+        )
+        
+        glUniform1i(
+            uniform,
+            0)
     }
     
 }

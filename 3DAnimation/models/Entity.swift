@@ -303,26 +303,16 @@ class Entity {
         
     }
     
-    func draw(
-        cameraView: GLKMatrix4,
-        projection: [Float]
-    ) {
+    func draw() {
         glUseProgram(mProgram)
         
-        glUniformMatrix4fv(
-            mProjectUniform,
-            GLsizei(1),
-            GLboolean(0),
-            projection)
-        
-        glUniformMatrix4fv(
-            modelViewUniform,
-            GLsizei(1),
-            GLboolean(0),
-            GLKMatrix4Multiply(
-                cameraView,
-                modelView).array
-        )
+        MainRenderer
+            .mCamera
+            .lay(
+                projUnif: mProjectUniform,
+                modelUnif: modelViewUniform,
+                model: &modelView
+            )
         
         glBindVertexArrayOES(
             mVertexArrayObject
@@ -335,18 +325,9 @@ class Entity {
             nil
         )
         
-        glActiveTexture(
-            GLenum(GL_TEXTURE_2D)
+        mTexture.draw(
+            uniform: mTextureUniform
         )
-        
-        glBindTexture(
-            GLenum(GL_TEXTURE_2D),
-            mTexture.texId
-        )
-        
-        glUniform1i(
-            mTextureUniform,
-            0)
         
         glUniform3f(
             mLightColorUniform,

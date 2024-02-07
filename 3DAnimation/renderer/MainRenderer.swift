@@ -12,27 +12,18 @@ class MainRenderer {
     
     private final let TAG = "MainRenderer"
     
+    public static var mCamera: BaseCamera!
+    
     private var mIsCreated = false
     
     private var mEntities: [Entity]? = nil
     
-    private var mProjection: GLKMatrix4!
-    private var mCameraView: GLKMatrix4!
-    
     func onCreate(
         _ frame: CGRect
     ) {
-        mCameraView = GLKMatrix4MakeTranslation(
-            -1.0,
-             -1.0,
-             -5.0
-        )
         
-        mProjection = GLKMatrix4MakePerspective(
-            85.0 / 180 * .pi,
-            Float(frame.width / frame.height),
-            1,
-            150
+        MainRenderer.mCamera = BaseCamera(
+            frame: frame
         )
         
         mEntities = [
@@ -63,14 +54,9 @@ class MainRenderer {
             GLint(frame.width),
             GLint(frame.height)
         )
-                
-        let proj = mProjection.array
         
         mEntities!.forEach { e in
-            e.draw(
-                cameraView: mCameraView,
-                projection: proj
-            )
+            e.draw()
         }
     }
     
