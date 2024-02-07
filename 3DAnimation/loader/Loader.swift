@@ -63,7 +63,6 @@ class Loader {
                 regex: "[ ]+"
             )
             
-            print("Loader:",c)
             switch (c[0]) {
             case "v":
                 vert.append(
@@ -106,9 +105,7 @@ class Loader {
             
         }
         
-        var normalss:[GLfloat] = []
-        var vertices:[GLfloat] = []
-        //var texCoords:[GLfloat] = []
+        var vertices: [GLfloat] = []
         
         for j in 0..<faces.count {
             indices.append(GLshort(UInt16(j)))
@@ -153,20 +150,21 @@ class Loader {
                 )
             )
             
+            // Normals
             i = 3 * (Int(parts[2])! - 1)
-            normalss.append(
+            vertices.append(
                 GLfloat(
                     normals[i]
                 )
             )
             i += 1
-            normalss.append(
+            vertices.append(
                 GLfloat(
                     normals[i]
                 )
             )
             i += 1
-            normalss.append(
+            vertices.append(
                 GLfloat(
                     normals[i]
                 )
@@ -175,7 +173,6 @@ class Loader {
         
         return Object3d(
             vertices: vertices,
-            normals: normalss,
             indices: indices
         )
         

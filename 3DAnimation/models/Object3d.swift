@@ -10,6 +10,5 @@ import GLKit
 
 struct Object3d {
     let vertices: [GLfloat]
-    let normals: [GLfloat]
     let indices: [GLshort]
 }

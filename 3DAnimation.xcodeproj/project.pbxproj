@@ -18,6 +18,7 @@
 		254AA1172B72A34600853B17 /* box.obj in Resources */ = {isa = PBXBuildFile; fileRef = 254AA1162B72A34600853B17 /* box.obj */; };
 		254AA11B2B72A4A100853B17 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AA11A2B72A4A100853B17 /* String.swift */; };
 		254AA11E2B733B3800853B17 /* main.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 254AA11D2B733B3800853B17 /* main.glsl */; };
+		254AA1202B73449B00853B17 /* vert.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 254AA11F2B73449B00853B17 /* vert.glsl */; };
 		25EDF4AF2B486E3C002A6CC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4AE2B486E3C002A6CC6 /* AppDelegate.swift */; };
 		25EDF4B12B486E3C002A6CC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4B02B486E3C002A6CC6 /* SceneDelegate.swift */; };
 		25EDF4B32B486E3C002A6CC6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4B22B486E3C002A6CC6 /* ViewController.swift */; };
@@ -58,6 +59,7 @@
 		254AA1162B72A34600853B17 /* box.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = box.obj; path = "../../../../../../../../Volumes/VMware Shared Folders/SHARED_FOLDER/box.obj"; sourceTree = "<group>"; };
 		254AA11A2B72A4A100853B17 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		254AA11D2B733B3800853B17 /* main.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.glsl; sourceTree = "<group>"; };
+		254AA11F2B73449B00853B17 /* vert.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = vert.glsl; sourceTree = "<group>"; };
 		25EDF4AB2B486E3C002A6CC6 /* 3DAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 3DAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25EDF4AE2B486E3C002A6CC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25EDF4B02B486E3C002A6CC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				254AA11D2B733B3800853B17 /* main.glsl */,
+				254AA11F2B73449B00853B17 /* vert.glsl */,
 			);
 			path = shaders;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				254AA1202B73449B00853B17 /* vert.glsl in Resources */,
 				254AA11E2B733B3800853B17 /* main.glsl in Resources */,
 				25EDF4BB2B486E3E002A6CC6 /* LaunchScreen.storyboard in Resources */,
 				25EDF4B82B486E3E002A6CC6 /* Assets.xcassets in Resources */,
