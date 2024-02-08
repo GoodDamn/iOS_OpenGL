@@ -94,11 +94,10 @@ extension ViewController:
     func glkViewControllerUpdate(
         _ controller: GLKViewController
     ) {
+        mRenderer.mDelta = Float(controller
+            .timeSinceLastDraw)
         mRenderer
-            .onUpdate(
-                Float(controller
-                    .timeSinceLastDraw)
-            )
+            .onUpdate()
         controller
             .view!
             .subviews[0]
@@ -119,7 +118,9 @@ extension ViewController {
         }
         
         mRenderer.onTouchBegan(
-            touch: touch
+            pos: touch.location(
+                in: view
+            )
         )
     }
     
@@ -132,7 +133,9 @@ extension ViewController {
         }
         
         mRenderer.onTouchEnded(
-            touch: touch
+            pos: touch.location(
+                in: view
+            )
         )
     }
     
@@ -145,7 +148,9 @@ extension ViewController {
         }
         
         mRenderer.onTouchMoved(
-            touch: touch
+            pos: touch.location(
+                in: view
+            )
         )
     }
 }

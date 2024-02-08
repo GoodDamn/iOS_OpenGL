@@ -67,6 +67,7 @@ class MainRenderer {
     
     public static var mCamera: BaseCamera!
     public static var mProgram: GLuint = 0
+    public var mDelta: Float = 1.0
     
     private var mIsCreated = false
     private var meshes: [Mesh]!
@@ -106,12 +107,19 @@ class MainRenderer {
             )
         ]
         
-        meshes[0].addScale(3.0)
+        meshes[0]
+            .addScale(3.0)
+        
+        mLights[0].position(
+            x: 0,
+            y: -1.5,
+            z: -1.5
+        )
         
         mLights[0].color(
             r: 1.0,
-            g: 0.0,
-            b: 0.0
+            g: 1.0,
+            b: 1.0
         )
         
         mIsCreated = true
@@ -120,7 +128,7 @@ class MainRenderer {
             .mCamera
             .addPosition(
                 x: 0,
-                y: -5.0,
+                y: 0.0,
                 z: -5.0
             )
         
@@ -158,20 +166,7 @@ class MainRenderer {
         }
     }
     
-    final func onUpdate(
-        _ delta: Float
-    ) {
-        MainRenderer
-            .mCamera
-            .addRotationY(
-                0.2
-            )
-        
-        mLights[0].position(
-            x: 0,
-            y: -0.01,
-            z: -0.01
-        )
+    final func onUpdate() {
         
         meshes.forEach { it in
             it.onUpdate()
@@ -179,20 +174,38 @@ class MainRenderer {
         
     }
     
+    var mpoint: CGPoint = .zero
+    
     final func onTouchBegan(
-        touch: UITouch
+        pos: CGPoint
     ) {
-        
+        mpoint = pos
     }
     
+    var a: Float = 0.0
+    var b: Float = 0.0
     final func onTouchMoved(
-        touch: UITouch
+        pos: CGPoint
     ) {
+        let dx = Float(pos.x - mpoint.x) * mDelta
+        let dy = Float(mpoint.y - pos.y) * mDelta
         
+        a += dx
+        b += dy
+            
+        MainRenderer
+            .mCamera
+            .position(
+                x: 5.0 * cosf(a),
+                y: 5.0 * sinf(b),
+                z: 0
+            )
+        
+        mpoint = pos
     }
     
     final func onTouchEnded(
-        touch: UITouch
+        pos: CGPoint
     ) {
         
     }
