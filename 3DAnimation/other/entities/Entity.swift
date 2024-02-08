@@ -12,6 +12,18 @@ class Entity {
    
     internal var model = GLKMatrix4Identity
     
+    public final func position(
+        x: Float,
+        y: Float,
+        z: Float
+    ) {
+        model = GLKMatrix4MakeTranslation(
+            x,
+            y,
+            z
+        )
+    }
+    
     public final func addPosition(
         x: Float,
         y: Float,
@@ -28,7 +40,6 @@ class Entity {
     public final func addRotationX(
         _ deg: Float
     ) {
-        
         model = GLKMatrix4RotateX(
             model,
             GLKMathDegreesToRadians(deg)
@@ -38,7 +49,6 @@ class Entity {
     public final func addRotationY(
         _ deg: Float
     ) {
-        
         model = GLKMatrix4RotateY(
             model,
             GLKMathDegreesToRadians(deg)

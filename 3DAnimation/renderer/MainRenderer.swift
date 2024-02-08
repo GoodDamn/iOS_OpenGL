@@ -120,10 +120,9 @@ class MainRenderer {
             .mCamera
             .addPosition(
                 x: 0,
-                y: -2.0,
+                y: -5.0,
                 z: -5.0
             )
-        
         
         glEnable(GLenum(GL_DEPTH_TEST))
     }
@@ -162,6 +161,11 @@ class MainRenderer {
     final func onUpdate(
         _ delta: Float
     ) {
+        MainRenderer
+            .mCamera
+            .addRotationY(
+                0.2
+            )
         
         mLights[0].position(
             x: 0,
@@ -172,6 +176,24 @@ class MainRenderer {
         meshes.forEach { it in
             it.onUpdate()
         }
+        
+    }
+    
+    final func onTouchBegan(
+        touch: UITouch
+    ) {
+        
+    }
+    
+    final func onTouchMoved(
+        touch: UITouch
+    ) {
+        
+    }
+    
+    final func onTouchEnded(
+        touch: UITouch
+    ) {
         
     }
     

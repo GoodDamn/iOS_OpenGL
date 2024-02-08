@@ -103,6 +103,49 @@ extension ViewController:
             .view!
             .subviews[0]
             .setNeedsDisplay()
+        
     }
     
+}
+
+extension ViewController {
+    
+    override func touchesBegan(
+        _ touches: Set<UITouch>,
+        with event: UIEvent?
+    ) {
+        guard let touch = touches.first else {
+            return
+        }
+        
+        mRenderer.onTouchBegan(
+            touch: touch
+        )
+    }
+    
+    override func touchesEnded(
+        _ touches: Set<UITouch>,
+        with event: UIEvent?
+    ) {
+        guard let touch = touches.first else {
+            return
+        }
+        
+        mRenderer.onTouchEnded(
+            touch: touch
+        )
+    }
+    
+    override func touchesMoved(
+        _ touches: Set<UITouch>,
+        with event: UIEvent?
+    ) {
+        guard let touch = touches.first else {
+            return
+        }
+        
+        mRenderer.onTouchMoved(
+            touch: touch
+        )
+    }
 }
