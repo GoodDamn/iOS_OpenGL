@@ -95,7 +95,10 @@ extension ViewController:
         _ controller: GLKViewController
     ) {
         mRenderer
-            .onUpdate()
+            .onUpdate(
+                Float(controller
+                    .timeSinceLastDraw)
+            )
         controller
             .view!
             .subviews[0]

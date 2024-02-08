@@ -76,7 +76,6 @@ class BaseLight {
             mColor.b
         )
         
-        
         glUniform1f(
             mLightAmbientUniform,
             GLfloat(0.1)

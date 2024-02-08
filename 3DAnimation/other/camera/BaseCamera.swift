@@ -8,38 +8,19 @@
 import Foundation
 import GLKit.GLKMatrix4
 
-class BaseCamera {
+class BaseCamera
+    : Entity {
     
-    private var modelCamera: GLKMatrix4
     private var mProjection: GLKMatrix4
     
     init(
         frame: CGRect
     ) {
-        modelCamera = GLKMatrix4MakeTranslation(
-            0.0,
-            0.0,
-            0.0
-        )
-        
         mProjection = GLKMatrix4MakePerspective(
             85.0 / 180 * .pi,
             Float(frame.width / frame.height),
             1,
             150
-        )
-    }
-    
-    public final func addPosition(
-        x: Float,
-        y: Float,
-        z: Float
-    ) {
-        modelCamera = GLKMatrix4Translate(
-            modelCamera,
-            x,
-            y,
-            z
         )
     }
     
@@ -63,14 +44,14 @@ class BaseCamera {
             GLsizei(1),
             GLboolean(0),
             GLKMatrix4Multiply(
-                modelCamera,
+                self.model,
                 model
             ).array
         )
     }
     
     public final func view() -> GLKMatrix4 {
-        return modelCamera
+        return model
     }
     
     public final func proj() -> GLKMatrix4 {

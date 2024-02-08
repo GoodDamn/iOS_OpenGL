@@ -21,6 +21,7 @@
 		254AA1202B73449B00853B17 /* vert.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 254AA11F2B73449B00853B17 /* vert.glsl */; };
 		254AA1232B73652D00853B17 /* BaseCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AA1222B73652D00853B17 /* BaseCamera.swift */; };
 		254AA1262B736B2A00853B17 /* BaseLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AA1252B736B2A00853B17 /* BaseLight.swift */; };
+		254AA1292B73767C00853B17 /* Mesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AA1282B73767C00853B17 /* Mesh.swift */; };
 		25EDF4AF2B486E3C002A6CC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4AE2B486E3C002A6CC6 /* AppDelegate.swift */; };
 		25EDF4B12B486E3C002A6CC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4B02B486E3C002A6CC6 /* SceneDelegate.swift */; };
 		25EDF4B32B486E3C002A6CC6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4B22B486E3C002A6CC6 /* ViewController.swift */; };
@@ -64,6 +65,7 @@
 		254AA11F2B73449B00853B17 /* vert.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = vert.glsl; sourceTree = "<group>"; };
 		254AA1222B73652D00853B17 /* BaseCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCamera.swift; sourceTree = "<group>"; };
 		254AA1252B736B2A00853B17 /* BaseLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLight.swift; sourceTree = "<group>"; };
+		254AA1282B73767C00853B17 /* Mesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mesh.swift; sourceTree = "<group>"; };
 		25EDF4AB2B486E3C002A6CC6 /* 3DAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 3DAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25EDF4AE2B486E3C002A6CC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25EDF4B02B486E3C002A6CC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,16 +106,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		250622432B490A8400FCD636 /* models */ = {
-			isa = PBXGroup;
-			children = (
-				250622442B490ABB00FCD636 /* Entity.swift */,
-				2506224E2B49459C00FCD636 /* Object3d.swift */,
-				250622622B4B108800FCD636 /* Texture.swift */,
-			);
-			path = models;
-			sourceTree = "<group>";
-		};
 		250622482B492A6D00FCD636 /* utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +160,7 @@
 		254AA1182B72A48000853B17 /* other */ = {
 			isa = PBXGroup;
 			children = (
+				254AA1272B73763400853B17 /* entities */,
 				254AA1242B736B2000853B17 /* light */,
 				254AA1212B73652100853B17 /* camera */,
 				254AA1192B72A49400853B17 /* extensions */,
@@ -208,6 +201,17 @@
 			path = light;
 			sourceTree = "<group>";
 		};
+		254AA1272B73763400853B17 /* entities */ = {
+			isa = PBXGroup;
+			children = (
+				250622442B490ABB00FCD636 /* Entity.swift */,
+				2506224E2B49459C00FCD636 /* Object3d.swift */,
+				250622622B4B108800FCD636 /* Texture.swift */,
+				254AA1282B73767C00853B17 /* Mesh.swift */,
+			);
+			path = entities;
+			sourceTree = "<group>";
+		};
 		25EDF4A22B486E3C002A6CC6 = {
 			isa = PBXGroup;
 			children = (
@@ -236,7 +240,6 @@
 				250622502B495BE200FCD636 /* resources */,
 				2506224B2B49450400FCD636 /* loader */,
 				250622482B492A6D00FCD636 /* utils */,
-				250622432B490A8400FCD636 /* models */,
 				25EDF4AE2B486E3C002A6CC6 /* AppDelegate.swift */,
 				25EDF4B02B486E3C002A6CC6 /* SceneDelegate.swift */,
 				25EDF4B22B486E3C002A6CC6 /* ViewController.swift */,
@@ -408,6 +411,7 @@
 				254AA1262B736B2A00853B17 /* BaseLight.swift in Sources */,
 				25EDF4B32B486E3C002A6CC6 /* ViewController.swift in Sources */,
 				25EDF4AF2B486E3C002A6CC6 /* AppDelegate.swift in Sources */,
+				254AA1292B73767C00853B17 /* Mesh.swift in Sources */,
 				250622562B49B37B00FCD636 /* Matrix.swift in Sources */,
 				25EDF4B12B486E3C002A6CC6 /* SceneDelegate.swift in Sources */,
 				2506224A2B492A7D00FCD636 /* OpenGL.swift in Sources */,

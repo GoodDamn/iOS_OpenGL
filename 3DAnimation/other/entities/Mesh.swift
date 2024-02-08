@@ -1,21 +1,20 @@
 //
-//  Entity.swift
+//  Mesh.swift
 //  3DAnimation
 //
-//  Created by GoodDamn on 05/01/2024.
+//  Created by GoodDamn on 07/02/2024.
 //
 
 import Foundation
 import GLKit
 
-class Entity {
+final class Mesh
+    : Entity {
     
-    private final let TAG = "Entity"
+    private final let TAG = "Mesh"
     
     private var mObject: Object3d
     private var mTexture: Texture
-    
-    private var modelView = GLKMatrix4Identity
     
     private var mPosition: GLuint
     private var mAttrTexCoord: GLuint
@@ -29,15 +28,20 @@ class Entity {
     
     private var mVertexArrayObject: GLuint = 1
     
+    //private let light: BaseLight
+    
     init(
         objectName: String,
         textureName: String,
         program: GLuint
     ) {
-        
         mObject = Loader.obj(
             assetName: objectName
         )!
+        
+        /*light = BaseLight(
+            program: program
+        )*/
         
         mTexture = Texture(
             assetName: textureName
@@ -183,17 +187,13 @@ class Entity {
             0
         )
         
-        
-        modelView = GLKMatrix4Translate(
-            modelView,
-            -0.5,
-            -0.5,
-            0
-        )
+        super.init()
         
     }
     
-    func onUpdate() {}
+    func onUpdate() {
+        
+    }
     
     func draw() {
         
@@ -202,7 +202,7 @@ class Entity {
             .lay(
                 projUnif: mProjectUniform,
                 modelUnif: modelViewUniform,
-                model: &modelView
+                model: &model
             )
         
         glBindVertexArrayOES(
@@ -223,14 +223,4 @@ class Entity {
         )
         
     }
-    
-}
-
-extension GLKMatrix4 {
-    var array: [Float] {
-        return (0..<16).map { i in
-            self[i]
-        }
-    }
-    
 }

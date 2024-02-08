@@ -69,10 +69,10 @@ class MainRenderer {
     public static var mProgram: GLuint = 0
     
     private var mIsCreated = false
-    private var mEntities: [Entity]!
+    private var meshes: [Mesh]!
     private var mLights: [BaseLight]!
     
-    func onCreate(
+    final func onCreate(
         _ frame: CGRect
     ) {
         
@@ -90,8 +90,8 @@ class MainRenderer {
             .mProgram
         )
         
-        mEntities = [
-            Entity(
+        meshes = [
+            Mesh(
                 objectName: "box.obj",
                 textureName: "box.png",
                 program: MainRenderer
@@ -106,13 +106,29 @@ class MainRenderer {
             )
         ]
         
+        meshes[0].addScale(3.0)
+        
+        mLights[0].color(
+            r: 1.0,
+            g: 0.0,
+            b: 0.0
+        )
         
         mIsCreated = true
+        
+        MainRenderer
+            .mCamera
+            .addPosition(
+                x: 0,
+                y: -2.0,
+                z: -5.0
+            )
+        
         
         glEnable(GLenum(GL_DEPTH_TEST))
     }
     
-    func onDraw(
+    final func onDraw(
         _ frame: CGRect
     ) {
         glClearColor(0.1,0.1,0.1,1.0)
@@ -134,7 +150,7 @@ class MainRenderer {
                 .mProgram
         )
         
-        mEntities.forEach { e in
+        meshes.forEach { e in
             e.draw()
         }
         
@@ -143,30 +159,23 @@ class MainRenderer {
         }
     }
     
-    func onUpdate() {
-
-        MainRenderer
-            .mCamera
-            .addPosition(
-                x: 0,
-                y: 0,
-                z: -0.01
-            )
+    final func onUpdate(
+        _ delta: Float
+    ) {
         
-        mEntities.forEach { it in
+        mLights[0].position(
+            x: 0,
+            y: -0.01,
+            z: -0.01
+        )
+        
+        meshes.forEach { it in
             it.onUpdate()
         }
         
-        /*mLights.forEach { it in
-            it.position(
-                x: <#T##Float#>,
-                y: <#T##Float#>,
-                z: <#T##Float#>
-            )
-        }*/
     }
     
-    func isCreated() -> Bool {
+    final func isCreated() -> Bool {
         return mIsCreated
     }
     
