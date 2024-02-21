@@ -13,6 +13,24 @@ final class EditorViewController
     
     private var mGrid: GridView!
     
+    override func viewWillDisappear(
+        _ animated: Bool
+    ) {
+        super.viewWillDisappear(animated)
+        
+        FileSkl
+            .write(
+                points: &mGrid.mPoints,
+                fileName: "1.skl",
+                project: CGPoint(
+                    x: mGrid.projectX,
+                    y: mGrid.projectY
+                ),
+                center: mGrid.center
+            )
+        
+    }
+    
     override func loadView() {
         super.loadView()
         mGrid = GridView(
@@ -23,15 +41,11 @@ final class EditorViewController
         
         mGrid.row = 10
         mGrid.cols = 10
+        mGrid.backgroundColor = .white
         
         view = mGrid
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = .white
-    }
 }
 
 extension EditorViewController {

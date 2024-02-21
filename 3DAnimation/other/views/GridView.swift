@@ -11,19 +11,14 @@ import UIKit
 final class GridView
     : UIView {
     
-    final var row = 5 {
-        didSet {
-            
-        }
-    }
+    final var projectX: CGFloat = 0
+    final var projectY: CGFloat = 0
     
-    final var cols = 5 {
-        didSet {
-            
-        }
-    }
+    final var row = 5
+    final var cols = 5
     
-    private final var mPoints: [CGPoint] = []
+    
+    final var mPoints: [CGPoint] = []
     
     private final let mLayer =
         CAShapeLayer()
@@ -53,8 +48,8 @@ final class GridView
         let pathGrid = UIBezierPath()
         let pathPoint = UIBezierPath()
         
-        let dx = rect.width / CGFloat(cols)
-        let dy = rect.height / CGFloat(row)
+        projectX = rect.width / CGFloat(cols)
+        projectY = rect.height / CGFloat(row)
         
         var curY: CGFloat = 0
         
@@ -74,7 +69,7 @@ final class GridView
                 )
             )
             
-            curY += dy
+            curY += projectY
         }
         
         var curX: CGFloat = 0
@@ -94,7 +89,7 @@ final class GridView
                 )
             )
             
-            curX += dx
+            curX += projectX
         }
         
         pathGrid.close()

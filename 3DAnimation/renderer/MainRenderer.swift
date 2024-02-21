@@ -17,7 +17,7 @@ final class MainRenderer {
     public var mDelta: Float = 1.0
     
     private var mIsCreated = false
-    private var meshes: [Mesh]!
+    private var meshes: [Mesh] = []
     private var mLights: [BaseLight]!
     
     final func onCreate(
@@ -43,19 +43,27 @@ final class MainRenderer {
             .mProgram
         )
         
-        meshes = [
-            Mesh(
+        let points = FileSkl.read(
+            fileName: "1.skl"
+        )
+        
+        for p in points {
+            
+            let mesh = Mesh(
                 objectName: "box.obj",
                 textureName: "box.png",
                 program: MainRenderer
                     .mProgram
-            ),
-            Mesh(
-                objectName: "box.obj",
-                textureName: "box.png",
-                program: MainRenderer.mProgram
             )
-        ]
+            
+            mesh.position(
+                x: Float(p.x),
+                y: 0,
+                z: Float(p.y)
+            )
+            
+            meshes.append(mesh)
+        }
         
         mLights = [
             BaseLight(
@@ -63,15 +71,6 @@ final class MainRenderer {
                     .mProgram
             )
         ]
-        
-        meshes[0]
-            .addScale(1.0)
-        meshes[0]
-            .addPosition(
-                x: -1.0,
-                y: 0,
-                z: 0
-            )
         
         mLights[0].position(
             x: 0,
@@ -92,7 +91,7 @@ final class MainRenderer {
             .addPosition(
                 x: 0,
                 y: 0.0,
-                z: -8.0
+                z: -3.0
             )
         
         glEnable(GLenum(GL_DEPTH_TEST))
