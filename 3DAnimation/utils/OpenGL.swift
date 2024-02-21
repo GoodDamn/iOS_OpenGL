@@ -36,11 +36,27 @@ public class OpenGL {
         
         return shader
     }
- 
+    
     public static func createProgram(
-        _ vertexCode: String,
-        _ fragmentCode: String
-    ) -> GLuint {
+        vertFile: String,
+        fragFile: String
+    ) -> GLuint? {
+        
+        guard let vertexCode = FileManager
+            .readBundleString(
+                fileName: vertFile
+            ) else {
+            print("ERROR_WHILE_READING_VERT_FILE")
+            return nil
+        }
+        
+        guard let fragCode = FileManager
+            .readBundleString(
+                fileName: fragFile
+            ) else {
+            print("ERROR_WHILE_READING_FRAG_FILE")
+            return nil
+        }
         
         let mProgram = glCreateProgram()
         
@@ -56,7 +72,7 @@ public class OpenGL {
             mProgram,
             OpenGL.loadShader(
                 GL_FRAGMENT_SHADER,
-                fragmentCode
+                fragCode
             )
         )
         
