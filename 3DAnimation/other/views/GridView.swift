@@ -25,6 +25,24 @@ final class GridView
     
     private final let mLayer = CAShapeLayer()
     
+    override init(
+        frame: CGRect
+    ) {
+        super.init(
+            frame: frame
+        )
+        
+        layer.addSublayer(
+            mLayer
+        )
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(
+            coder: coder
+        )
+    }
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
@@ -52,6 +70,26 @@ final class GridView
             )
             
             curY += dy
+        }
+        
+        var curX: CGFloat = 0
+        for _ in 0..<cols {
+            
+            p.move(
+                to: CGPoint(
+                    x: curX,
+                    y: 0
+                )
+            )
+            
+            p.addLine(
+                to: CGPoint(
+                    x: curX,
+                    y: rect.height
+                )
+            )
+            
+            curX += dx
         }
         
         mLayer.path = p.cgPath

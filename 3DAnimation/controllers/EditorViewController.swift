@@ -11,14 +11,21 @@ import UIKit
 final class EditorViewController
     : UIViewController {
     
-    private var mGrid: GridView? = nil
+    private var mGrid: GridView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .white
+        
         mGrid = GridView(
             frame: view.frame
         )
+        
+        mGrid.row = 10
+        mGrid.cols = 10
+        
+        view.addSubview(mGrid)
         
     }
 
