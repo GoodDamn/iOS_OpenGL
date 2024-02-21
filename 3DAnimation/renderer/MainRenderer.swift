@@ -8,62 +8,9 @@
 import Foundation
 import GLKit
 
-class MainRenderer {
+final class MainRenderer {
     
     private final let TAG = "MainRenderer"
-    
-    private final let mFragmentCode =
-    """
-    precision mediump float;
-
-    varying lowp vec2 texCoordOut;
-    varying lowp vec3 normalOut;
-
-    uniform sampler2D texture;
-
-    struct Light {
-        lowp vec3 color;
-        lowp float ambient;
-        lowp float diffIntensity;
-        lowp vec3 direction;
-    };
-
-    uniform Light light;
-
-    void main() {
-        
-        lowp vec3 ambColor = light.color * light.ambient;
-        
-        lowp vec3 normal = normalize(normalOut);
-        lowp float difFactor = max(-dot(normal, light.direction), 0.0);
-        lowp vec3 difColor = light.color * light.diffIntensity * difFactor;
-        
-        gl_FragColor = texture2D(texture, texCoordOut) * vec4(ambColor + difColor, 1.0);
-        
-    }
-
-    """
-    
-    private final let mVertexCode =
-    """
-    attribute vec4 position;
-    attribute vec4 color;
-    attribute vec2 texCoordIn;
-    attribute vec3 normalIn;
-
-    varying lowp vec2 texCoordOut;
-    varying lowp vec3 normalOut;
-
-    uniform mat4 projection;
-    uniform mat4 model;
-
-    void main() {
-        gl_Position = projection * model * position;
-        texCoordOut = texCoordIn;
-        normalOut = (model * vec4(normalIn, 0.0)).xyz;
-    }
-
-    """
     
     public static var mCamera: BaseCamera!
     public static var mProgram: GLuint = 0
@@ -80,12 +27,17 @@ class MainRenderer {
         MainRenderer.mCamera = BaseCamera(
             frame: frame
         )
-        
-        MainRenderer.mProgram = OpenGL
+
+        guard let program = OpenGL
             .createProgram(
-                mVertexCode,
-                mFragmentCode
-            )
+                vertFile: "vert.glsl",
+                fragFile: "main.glsl"
+            ) else {
+            print("ERROR_WHITE_LOADING_PROGRAM")
+            return
+        }
+        
+        MainRenderer.mProgram = program
         
         glLinkProgram(MainRenderer
             .mProgram
@@ -129,7 +81,7 @@ class MainRenderer {
             .addPosition(
                 x: 0,
                 y: 0.0,
-                z: -5.0
+                z: -8.0
             )
         
         glEnable(GLenum(GL_DEPTH_TEST))
@@ -195,11 +147,17 @@ class MainRenderer {
             
         MainRenderer
             .mCamera
+            .addRotationY(
+                dx * 2.5
+            )
+        
+        /*MainRenderer
+            .mCamera
             .position(
                 x: 5.0 * cosf(a),
                 y: 5.0 * sinf(b),
                 z: 0
-            )
+            )*/
         
         mpoint = pos
     }

@@ -15,13 +15,14 @@
 		250622592B49BABF00FCD636 /* MainRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250622582B49BABF00FCD636 /* MainRenderer.swift */; };
 		250622632B4B108800FCD636 /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250622622B4B108800FCD636 /* Texture.swift */; };
 		254AA1152B72A33E00853B17 /* box.png in Resources */ = {isa = PBXBuildFile; fileRef = 254AA1142B72A33E00853B17 /* box.png */; };
-		254AA1172B72A34600853B17 /* box.obj in Resources */ = {isa = PBXBuildFile; fileRef = 254AA1162B72A34600853B17 /* box.obj */; };
 		254AA11B2B72A4A100853B17 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AA11A2B72A4A100853B17 /* String.swift */; };
 		254AA11E2B733B3800853B17 /* main.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 254AA11D2B733B3800853B17 /* main.glsl */; };
 		254AA1202B73449B00853B17 /* vert.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 254AA11F2B73449B00853B17 /* vert.glsl */; };
 		254AA1232B73652D00853B17 /* BaseCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AA1222B73652D00853B17 /* BaseCamera.swift */; };
 		254AA1262B736B2A00853B17 /* BaseLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AA1252B736B2A00853B17 /* BaseLight.swift */; };
 		254AA1292B73767C00853B17 /* Mesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AA1282B73767C00853B17 /* Mesh.swift */; };
+		25C5B1682B85ABF500AB7114 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C5B1672B85ABF500AB7114 /* FileManager.swift */; };
+		25C5B16A2B85AF2300AB7114 /* box.obj in Resources */ = {isa = PBXBuildFile; fileRef = 25C5B1692B85AF2300AB7114 /* box.obj */; };
 		25EDF4AF2B486E3C002A6CC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4AE2B486E3C002A6CC6 /* AppDelegate.swift */; };
 		25EDF4B12B486E3C002A6CC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4B02B486E3C002A6CC6 /* SceneDelegate.swift */; };
 		25EDF4B32B486E3C002A6CC6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4B22B486E3C002A6CC6 /* ViewController.swift */; };
@@ -59,13 +60,14 @@
 		250622582B49BABF00FCD636 /* MainRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRenderer.swift; sourceTree = "<group>"; };
 		250622622B4B108800FCD636 /* Texture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
 		254AA1142B72A33E00853B17 /* box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = box.png; sourceTree = "<group>"; };
-		254AA1162B72A34600853B17 /* box.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = box.obj; path = "../../../../../../../../Volumes/VMware Shared Folders/SHARED_FOLDER/box.obj"; sourceTree = "<group>"; };
 		254AA11A2B72A4A100853B17 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		254AA11D2B733B3800853B17 /* main.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.glsl; sourceTree = "<group>"; };
 		254AA11F2B73449B00853B17 /* vert.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = vert.glsl; sourceTree = "<group>"; };
 		254AA1222B73652D00853B17 /* BaseCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCamera.swift; sourceTree = "<group>"; };
 		254AA1252B736B2A00853B17 /* BaseLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseLight.swift; sourceTree = "<group>"; };
 		254AA1282B73767C00853B17 /* Mesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mesh.swift; sourceTree = "<group>"; };
+		25C5B1672B85ABF500AB7114 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		25C5B1692B85AF2300AB7114 /* box.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = box.obj; path = "../../../../../../../../../Volumes/VMware Shared Folders/SHARED_FOLDER/box.obj"; sourceTree = "<group>"; };
 		25EDF4AB2B486E3C002A6CC6 /* 3DAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 3DAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25EDF4AE2B486E3C002A6CC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25EDF4B02B486E3C002A6CC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -144,7 +146,7 @@
 		2506225A2B4B0F8300FCD636 /* objs */ = {
 			isa = PBXGroup;
 			children = (
-				254AA1162B72A34600853B17 /* box.obj */,
+				25C5B1692B85AF2300AB7114 /* box.obj */,
 			);
 			path = objs;
 			sourceTree = "<group>";
@@ -172,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				254AA11A2B72A4A100853B17 /* String.swift */,
+				25C5B1672B85ABF500AB7114 /* FileManager.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -373,10 +376,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				254AA1202B73449B00853B17 /* vert.glsl in Resources */,
+				25C5B16A2B85AF2300AB7114 /* box.obj in Resources */,
 				254AA11E2B733B3800853B17 /* main.glsl in Resources */,
 				25EDF4BB2B486E3E002A6CC6 /* LaunchScreen.storyboard in Resources */,
 				25EDF4B82B486E3E002A6CC6 /* Assets.xcassets in Resources */,
-				254AA1172B72A34600853B17 /* box.obj in Resources */,
 				25EDF4B62B486E3D002A6CC6 /* Main.storyboard in Resources */,
 				254AA1152B72A33E00853B17 /* box.png in Resources */,
 			);
@@ -403,6 +406,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25C5B1682B85ABF500AB7114 /* FileManager.swift in Sources */,
 				250622452B490ABB00FCD636 /* Entity.swift in Sources */,
 				250622632B4B108800FCD636 /* Texture.swift in Sources */,
 				2506224D2B49451000FCD636 /* Loader.swift in Sources */,

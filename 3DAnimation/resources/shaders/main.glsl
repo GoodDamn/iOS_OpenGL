@@ -27,9 +27,9 @@ void main() {
     
     lowp vec3 normal = normalize(normalOut);
     lowp float difFactor = max(-dot(normal, light.direction), 0.0);
-    lowp vec4 difColor = light.color * light.diffIntensity * difFactor;
+    lowp vec3 difColor = light.color * light.diffIntensity * difFactor;
     
-    gl_FragColor = texture2D(texture, texCoordOut) * vec4(ambColor + difColor);
+    gl_FragColor = texture2D(texture, texCoordOut) * vec4(ambColor + difColor, 1.0);
     
 }
 
