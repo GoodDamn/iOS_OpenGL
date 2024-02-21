@@ -13,31 +13,42 @@ final class EditorViewController
     
     private var mGrid: GridView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = .white
-        
+    override func loadView() {
+        super.loadView()
         mGrid = GridView(
-            frame: view.frame
+            frame: UIScreen
+                .main
+                .bounds
         )
         
         mGrid.row = 10
         mGrid.cols = 10
         
-        view.addSubview(mGrid)
-        
+        view = mGrid
     }
-
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .white
+    }
 }
 
 extension EditorViewController {
     
-    override func touchesBegan(
+    override func touchesEnded(
         _ touches: Set<UITouch>,
         with event: UIEvent?
     ) {
+        guard let touch = touches.first else {
+            return
+        }
         
+        mGrid.addPoint(
+            touch.location(
+                in: mGrid
+            )
+        )
     }
     
 }

@@ -23,7 +23,13 @@ final class GridView
         }
     }
     
-    private final let mLayer = CAShapeLayer()
+    private final var mPoints: [CGPoint] = []
+    
+    private final let mLayer =
+        CAShapeLayer()
+    
+    private final let mPointsLayer =
+        CAShapeLayer()
     
     override init(
         frame: CGRect
@@ -31,22 +37,21 @@ final class GridView
         super.init(
             frame: frame
         )
-        
-        layer.addSublayer(
-            mLayer
-        )
+        initial()
     }
     
     required init?(coder: NSCoder) {
         super.init(
             coder: coder
         )
+        initial()
     }
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        let p = UIBezierPath()
+        let pathGrid = UIBezierPath()
+        let pathPoint = UIBezierPath()
         
         let dx = rect.width / CGFloat(cols)
         let dy = rect.height / CGFloat(row)
@@ -55,14 +60,14 @@ final class GridView
         
         for _ in 0..<row {
             
-            p.move(
+            pathGrid.move(
                 to: CGPoint(
                     x: 0,
                     y: curY
                 )
             )
             
-            p.addLine(
+            pathGrid.addLine(
                 to: CGPoint(
                     x: rect.width,
                     y: curY
@@ -75,14 +80,14 @@ final class GridView
         var curX: CGFloat = 0
         for _ in 0..<cols {
             
-            p.move(
+            pathGrid.move(
                 to: CGPoint(
                     x: curX,
                     y: 0
                 )
             )
             
-            p.addLine(
+            pathGrid.addLine(
                 to: CGPoint(
                     x: curX,
                     y: rect.height
@@ -92,12 +97,60 @@ final class GridView
             curX += dx
         }
         
-        mLayer.path = p.cgPath
+        pathGrid.close()
+        
+        for point in mPoints {
+            
+            pathPoint.move(
+                to: point
+            )
+            
+            pathPoint.addArc(
+                withCenter: point,
+                radius: 5.0,
+                startAngle: 0,
+                endAngle: .pi * 2,
+                clockwise: true
+            )
+            
+        }
+        
+        pathPoint.close()
+        
+        mLayer.path = pathGrid.cgPath
         mLayer.fillColor = nil
         mLayer.strokeColor = UIColor.gray
             .cgColor
-        
         mLayer.lineWidth = 2.0
         
+        mPointsLayer.path = pathPoint.cgPath
     }
+    
+    
+    
+    final func addPoint(
+        _ p: CGPoint
+    ) {
+        mPoints.append(
+            p
+        )
+        
+        setNeedsDisplay()
+    }
+    
+    private final func initial() {
+        layer.addSublayer(
+            mLayer
+        )
+        
+        mPointsLayer.fillColor = nil
+        mPointsLayer.strokeColor = UIColor.red
+            .cgColor
+        mPointsLayer.lineWidth = 5
+        
+        layer.addSublayer(
+            mPointsLayer
+        )
+    }
+    
 }
