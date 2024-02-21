@@ -49,6 +49,11 @@ final class MainRenderer {
                 textureName: "box.png",
                 program: MainRenderer
                     .mProgram
+            ),
+            Mesh(
+                objectName: "box.obj",
+                textureName: "box.png",
+                program: MainRenderer.mProgram
             )
         ]
         
@@ -60,7 +65,13 @@ final class MainRenderer {
         ]
         
         meshes[0]
-            .addScale(3.0)
+            .addScale(1.0)
+        meshes[0]
+            .addPosition(
+                x: -1.0,
+                y: 0,
+                z: 0
+            )
         
         mLights[0].position(
             x: 0,

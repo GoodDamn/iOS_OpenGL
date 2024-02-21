@@ -28,8 +28,6 @@ final class Mesh
     
     private var mVertexArrayObject: GLuint = 1
     
-    //private let light: BaseLight
-    
     init(
         objectName: String,
         textureName: String,
@@ -39,9 +37,6 @@ final class Mesh
             assetName: objectName
         )!
         
-        /*light = BaseLight(
-            program: program
-        )*/
         
         mTexture = Texture(
             assetName: textureName

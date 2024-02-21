@@ -8,7 +8,7 @@
 import UIKit
 import GLKit
 
-class ViewController
+final class ViewController
     : GLKViewController {
 
     private final let TAG = "ViewController"

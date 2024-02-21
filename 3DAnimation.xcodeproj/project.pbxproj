@@ -23,6 +23,8 @@
 		254AA1292B73767C00853B17 /* Mesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 254AA1282B73767C00853B17 /* Mesh.swift */; };
 		25C5B1682B85ABF500AB7114 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C5B1672B85ABF500AB7114 /* FileManager.swift */; };
 		25C5B16A2B85AF2300AB7114 /* box.obj in Resources */ = {isa = PBXBuildFile; fileRef = 25C5B1692B85AF2300AB7114 /* box.obj */; };
+		25C5B16D2B85B4D300AB7114 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C5B16C2B85B4D300AB7114 /* EditorViewController.swift */; };
+		25C5B1702B85B5D400AB7114 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C5B16F2B85B5D400AB7114 /* GridView.swift */; };
 		25EDF4AF2B486E3C002A6CC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4AE2B486E3C002A6CC6 /* AppDelegate.swift */; };
 		25EDF4B12B486E3C002A6CC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4B02B486E3C002A6CC6 /* SceneDelegate.swift */; };
 		25EDF4B32B486E3C002A6CC6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4B22B486E3C002A6CC6 /* ViewController.swift */; };
@@ -68,6 +70,8 @@
 		254AA1282B73767C00853B17 /* Mesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mesh.swift; sourceTree = "<group>"; };
 		25C5B1672B85ABF500AB7114 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		25C5B1692B85AF2300AB7114 /* box.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = box.obj; path = "../../../../../../../../../Volumes/VMware Shared Folders/SHARED_FOLDER/box.obj"; sourceTree = "<group>"; };
+		25C5B16C2B85B4D300AB7114 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
+		25C5B16F2B85B5D400AB7114 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		25EDF4AB2B486E3C002A6CC6 /* 3DAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 3DAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25EDF4AE2B486E3C002A6CC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25EDF4B02B486E3C002A6CC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 		254AA1182B72A48000853B17 /* other */ = {
 			isa = PBXGroup;
 			children = (
+				25C5B16E2B85B5C800AB7114 /* views */,
 				254AA1272B73763400853B17 /* entities */,
 				254AA1242B736B2000853B17 /* light */,
 				254AA1212B73652100853B17 /* camera */,
@@ -215,6 +220,23 @@
 			path = entities;
 			sourceTree = "<group>";
 		};
+		25C5B16B2B85B4B100AB7114 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				25EDF4B22B486E3C002A6CC6 /* ViewController.swift */,
+				25C5B16C2B85B4D300AB7114 /* EditorViewController.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		25C5B16E2B85B5C800AB7114 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				25C5B16F2B85B5D400AB7114 /* GridView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
 		25EDF4A22B486E3C002A6CC6 = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +260,7 @@
 		25EDF4AD2B486E3C002A6CC6 /* 3DAnimation */ = {
 			isa = PBXGroup;
 			children = (
+				25C5B16B2B85B4B100AB7114 /* controllers */,
 				254AA1182B72A48000853B17 /* other */,
 				250622572B49BAAC00FCD636 /* renderer */,
 				250622502B495BE200FCD636 /* resources */,
@@ -245,7 +268,6 @@
 				250622482B492A6D00FCD636 /* utils */,
 				25EDF4AE2B486E3C002A6CC6 /* AppDelegate.swift */,
 				25EDF4B02B486E3C002A6CC6 /* SceneDelegate.swift */,
-				25EDF4B22B486E3C002A6CC6 /* ViewController.swift */,
 				25EDF4B42B486E3C002A6CC6 /* Main.storyboard */,
 				25EDF4B72B486E3E002A6CC6 /* Assets.xcassets */,
 				25EDF4B92B486E3E002A6CC6 /* LaunchScreen.storyboard */,
@@ -416,7 +438,9 @@
 				25EDF4B32B486E3C002A6CC6 /* ViewController.swift in Sources */,
 				25EDF4AF2B486E3C002A6CC6 /* AppDelegate.swift in Sources */,
 				254AA1292B73767C00853B17 /* Mesh.swift in Sources */,
+				25C5B1702B85B5D400AB7114 /* GridView.swift in Sources */,
 				250622562B49B37B00FCD636 /* Matrix.swift in Sources */,
+				25C5B16D2B85B4D300AB7114 /* EditorViewController.swift in Sources */,
 				25EDF4B12B486E3C002A6CC6 /* SceneDelegate.swift in Sources */,
 				2506224A2B492A7D00FCD636 /* OpenGL.swift in Sources */,
 				254AA11B2B72A4A100853B17 /* String.swift in Sources */,
