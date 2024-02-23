@@ -31,7 +31,7 @@ final class MainRenderer {
         guard let program = OpenGL
             .createProgram(
                 vertFile: "vert.glsl",
-                fragFile: "main.glsl"
+                fragFile: "frag.glsl"
             ) else {
             print("ERROR_WHITE_LOADING_PROGRAM")
             return
@@ -50,8 +50,8 @@ final class MainRenderer {
         for p in points {
             
             let mesh = Mesh(
-                objectName: "box.obj",
-                textureName: "box.png",
+                objectName: "test.obj",
+                textureName: "prim_text.jpg",
                 program: MainRenderer
                     .mProgram
             )
@@ -91,10 +91,16 @@ final class MainRenderer {
             .addPosition(
                 x: 0,
                 y: 0.0,
-                z: -3.0
+                z: 0.0
             )
         
-        glEnable(GLenum(GL_DEPTH_TEST))
+        glEnable(GLenum(
+            GL_DEPTH_TEST
+        ))
+        
+        glEnable(GLenum(
+            GL_CULL_FACE
+        ))
     }
     
     final func onDraw(
@@ -150,24 +156,30 @@ final class MainRenderer {
         pos: CGPoint
     ) {
         let dx = Float(pos.x - mpoint.x) * mDelta
-        let dy = Float(mpoint.y - pos.y) * mDelta
+        let dy = Float(pos.y - mpoint.y) * mDelta
         
         a += dx
         b += dy
             
+        
+        /*MainRenderer
+            .mCamera
+            .addRotation(
+                y: dx * 2.5,
+                z: dy * 2.5
+            )*/
+        
         MainRenderer
             .mCamera
             .addRotationY(
                 dx * 2.5
             )
         
-        /*MainRenderer
+        MainRenderer
             .mCamera
-            .position(
-                x: 5.0 * cosf(a),
-                y: 5.0 * sinf(b),
-                z: 0
-            )*/
+            .addRotationZ(
+                dy * 2.5
+            )
         
         mpoint = pos
     }

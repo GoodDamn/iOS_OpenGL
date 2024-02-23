@@ -70,7 +70,7 @@ final class FileSkl {
             return []
         }
         
-        let count = data[0]
+        let count = Int(data[0])
         
         let countBytes = count * 3
         var i = 1

@@ -8,7 +8,7 @@
 import Foundation
 import GLKit
 
-class Loader {
+final class Loader {
     
     private static let TAG = "Loader:"
     
@@ -57,8 +57,7 @@ class Loader {
         
         var indices:[GLshort] = []
         
-        lines.forEach {
-            it in
+        lines.forEach { it in
             let c = it.split(
                 regex: "[ ]+"
             )
@@ -98,6 +97,7 @@ class Loader {
                 faces.append(c[1])
                 faces.append(c[2])
                 faces.append(c[3])
+                
                 break
             default:
                 break
@@ -105,7 +105,7 @@ class Loader {
             
         }
         
-        var vertices: [GLfloat] = []
+        var vertexData: [GLfloat] = []
         
         for j in 0..<faces.count {
             indices.append(GLshort(UInt16(j)))
@@ -118,19 +118,20 @@ class Loader {
             
             var i = 3 * vertexIndex
             
-            vertices.append(
+            // Position
+            vertexData.append(
                 GLfloat(
                     vert[i]
                 )
             )
             i+=1
-            vertices.append(
+            vertexData.append(
                 GLfloat(
                     vert[i]
                 )
             )
             i+=1
-            vertices.append(
+            vertexData.append(
                 GLfloat(
                     vert[i]
                 )
@@ -138,13 +139,13 @@ class Loader {
             
             // Texture coords
             i = 2 * (Int(parts[1])! - 1)
-            vertices.append(
+            vertexData.append(
                 GLfloat(
                     textures[i]
                 )
             )
             i += 1
-            vertices.append(
+            vertexData.append(
                 GLfloat(
                     textures[i]
                 )
@@ -152,19 +153,19 @@ class Loader {
             
             // Normals
             i = 3 * (Int(parts[2])! - 1)
-            vertices.append(
+            vertexData.append(
                 GLfloat(
                     normals[i]
                 )
             )
             i += 1
-            vertices.append(
+            vertexData.append(
                 GLfloat(
                     normals[i]
                 )
             )
             i += 1
-            vertices.append(
+            vertexData.append(
                 GLfloat(
                     normals[i]
                 )
@@ -172,7 +173,7 @@ class Loader {
         }
         
         return Object3d(
-            vertices: vertices,
+            vertices: vertexData,
             indices: indices
         )
         
