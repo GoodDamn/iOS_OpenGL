@@ -28,8 +28,6 @@ final class Mesh
     
     private var mVertexArrayObject: GLuint = 1
     
-    //private let light: BaseLight
-    
     init(
         objectName: String,
         textureName: String,
@@ -39,9 +37,6 @@ final class Mesh
             assetName: objectName
         )!
         
-        /*light = BaseLight(
-            program: program
-        )*/
         
         mTexture = Texture(
             assetName: textureName
@@ -143,7 +138,7 @@ final class Mesh
             GLenum(GL_FLOAT),
             GLboolean(GL_FALSE),
             stride, // stride
-            nil
+            Mesh.offset(0)
         )
         
         
@@ -157,7 +152,7 @@ final class Mesh
             GLenum(GL_FLOAT),
             GLboolean(GL_FALSE),
             stride,
-            UnsafeRawPointer(bitPattern: 3 * 4)
+            Mesh.offset(3 * 4)
         )
         
         glEnableVertexAttribArray(
@@ -169,8 +164,8 @@ final class Mesh
             GLint(3),
             GLenum(GL_FLOAT),
             GLboolean(GL_FALSE),
-            GLsizei(8 * 4),
-            UnsafeRawPointer(bitPattern: 5 * 4)
+            stride,
+            Mesh.offset(5 * 4)
         )
         
         glBindVertexArrayOES(
@@ -191,11 +186,11 @@ final class Mesh
         
     }
     
-    func onUpdate() {
+    final func onUpdate() {
         
     }
     
-    func draw() {
+    final func draw() {
         
         MainRenderer
             .mCamera
@@ -222,5 +217,13 @@ final class Mesh
             0
         )
         
+    }
+    
+    private static func offset(
+        _ i: Int
+    ) -> UnsafeRawPointer? {
+        return UnsafeRawPointer(
+            bitPattern: i
+        )
     }
 }

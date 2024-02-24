@@ -12,6 +12,10 @@ class Entity {
    
     internal var model = GLKMatrix4Identity
     
+    private var mRotationX: CGFloat = 0
+    private var mRotationY: CGFloat = 0
+    private var mRotationZ: CGFloat = 0
+    
     public final func position(
         x: Float,
         y: Float,

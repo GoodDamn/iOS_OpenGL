@@ -17,7 +17,7 @@ final class MainRenderer {
     public var mDelta: Float = 1.0
     
     private var mIsCreated = false
-    private var meshes: [Mesh]!
+    private var meshes: [Mesh] = []
     private var mLights: [BaseLight]!
     
     final func onCreate(
@@ -31,7 +31,7 @@ final class MainRenderer {
         guard let program = OpenGL
             .createProgram(
                 vertFile: "vert.glsl",
-                fragFile: "main.glsl"
+                fragFile: "frag.glsl"
             ) else {
             print("ERROR_WHITE_LOADING_PROGRAM")
             return
@@ -43,14 +43,27 @@ final class MainRenderer {
             .mProgram
         )
         
-        meshes = [
-            Mesh(
-                objectName: "box.obj",
-                textureName: "box.png",
+        let points = FileSkl.read(
+            fileName: "1.skl"
+        )
+        
+        for p in points {
+            
+            let mesh = Mesh(
+                objectName: "test.obj",
+                textureName: "prim_text.jpg",
                 program: MainRenderer
                     .mProgram
             )
-        ]
+            
+            mesh.position(
+                x: Float(p.x),
+                y: 0,
+                z: Float(p.y)
+            )
+            
+            meshes.append(mesh)
+        }
         
         mLights = [
             BaseLight(
@@ -58,9 +71,6 @@ final class MainRenderer {
                     .mProgram
             )
         ]
-        
-        meshes[0]
-            .addScale(3.0)
         
         mLights[0].position(
             x: 0,
@@ -81,10 +91,16 @@ final class MainRenderer {
             .addPosition(
                 x: 0,
                 y: 0.0,
-                z: -8.0
+                z: 0.0
             )
         
-        glEnable(GLenum(GL_DEPTH_TEST))
+        glEnable(GLenum(
+            GL_DEPTH_TEST
+        ))
+        
+        glEnable(GLenum(
+            GL_CULL_FACE
+        ))
     }
     
     final func onDraw(
@@ -140,24 +156,30 @@ final class MainRenderer {
         pos: CGPoint
     ) {
         let dx = Float(pos.x - mpoint.x) * mDelta
-        let dy = Float(mpoint.y - pos.y) * mDelta
+        let dy = Float(pos.y - mpoint.y) * mDelta
         
         a += dx
         b += dy
             
+        
+        /*MainRenderer
+            .mCamera
+            .addRotation(
+                y: dx * 2.5,
+                z: dy * 2.5
+            )*/
+        
         MainRenderer
             .mCamera
             .addRotationY(
                 dx * 2.5
             )
         
-        /*MainRenderer
+        MainRenderer
             .mCamera
-            .position(
-                x: 5.0 * cosf(a),
-                y: 5.0 * sinf(b),
-                z: 0
-            )*/
+            .addRotationZ(
+                dy * 2.5
+            )
         
         mpoint = pos
     }

@@ -8,7 +8,7 @@
 import UIKit
 import GLKit
 
-class ViewController
+final class PreviewController
     : GLKViewController {
 
     private final let TAG = "ViewController"
@@ -81,7 +81,7 @@ class ViewController
     
 }
 
-extension ViewController:
+extension PreviewController:
     GLKViewControllerDelegate {
     
     func glkViewController(
@@ -107,7 +107,7 @@ extension ViewController:
     
 }
 
-extension ViewController {
+extension PreviewController {
     
     override func touchesBegan(
         _ touches: Set<UITouch>,
