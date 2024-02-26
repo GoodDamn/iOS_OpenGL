@@ -8,12 +8,30 @@
 import Foundation
 import GLKit.GLKMatrix4
 
-final class BaseCamera
+class BaseCamera
     : Entity {
     
     private var mProjection: GLKMatrix4
     
-    private var mDirection: GLKVector3
+    internal var mDirection: GLKVector3
+    
+    internal var mPosition = GLKVector3Make(
+        0,
+        0,
+        -10
+    )
+    
+    internal let mTargetPos = GLKVector3Make(
+        0,
+        0,
+        0
+    )
+    
+    internal let mUp = GLKVector3Make(
+        0,
+        1,
+        0
+    )
     
     init(
         frame: CGRect
@@ -66,14 +84,4 @@ final class BaseCamera
     public final func proj() -> GLKMatrix4 {
         return mProjection
     }
-    
-    
-    public final func addRotation(
-        y: Float,
-        z: Float
-    ) {
-        
-        
-    }
-    
 }

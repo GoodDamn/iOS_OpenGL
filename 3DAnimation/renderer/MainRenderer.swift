@@ -12,7 +12,7 @@ final class MainRenderer {
     
     private final let TAG = "MainRenderer"
     
-    public static var mCamera: BaseCamera!
+    public static var mCamera: RotationCamera!
     public static var mProgram: GLuint = 0
     public var mDelta: Float = 1.0
     
@@ -24,7 +24,7 @@ final class MainRenderer {
         _ frame: CGRect
     ) {
         
-        MainRenderer.mCamera = BaseCamera(
+        MainRenderer.mCamera = RotationCamera(
             frame: frame
         )
 
@@ -150,37 +150,26 @@ final class MainRenderer {
         mpoint = pos
     }
     
-    var a: Float = 0.0
-    var b: Float = 0.0
     final func onTouchMoved(
         pos: CGPoint
     ) {
+        
         let dx = Float(pos.x - mpoint.x) * mDelta
-        let dy = Float(pos.y - mpoint.y) * mDelta
-        
-        a += dx
-        b += dy
-            
-        
-        /*MainRenderer
-            .mCamera
-            .addRotation(
-                y: dx * 2.5,
-                z: dy * 2.5
-            )*/
+        let dy = Float(mpoint.y - pos.y) * mDelta
         
         MainRenderer
+            .mCamera
+            .rotate(
+                hDegrees: dx * 5,
+                vDegrees: dy * 5
+            )
+        
+        /*MainRenderer
             .mCamera
             .addRotationY(
                 dx * 2.5
             )
-        
-        MainRenderer
-            .mCamera
-            .addRotationZ(
-                dy * 2.5
-            )
-        
+        */
         mpoint = pos
     }
     
