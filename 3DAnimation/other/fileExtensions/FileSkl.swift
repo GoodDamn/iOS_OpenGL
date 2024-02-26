@@ -31,11 +31,26 @@ final class FileSkl {
             
             let a = points[p]
             
+            let x = Float(a.x / project.x)
+            let y = Float(a.y / project.y)
+            let z: Float = 0
+            
+            let xData = Data.float(x)
+            let yData = Data.float(y)
+            let zData = Data.float(z)
+            
+            print(xData, yData, zData)
+            
             data.append(
-                [UInt8(bitPattern: Int8(a.x / project.x)),
-                 UInt8(bitPattern: Int8(a.y / project.y)),
-                 UInt8(bitPattern: 0)],
-                count: 3
+                xData
+            )
+            
+            data.append(
+                yData
+            )
+            
+            data.append(
+                zData
             )
             
         }
@@ -71,27 +86,42 @@ final class FileSkl {
         }
         
         let count = Int(data[0])
+        let coordBytes = 4
         
-        let countBytes = count * 3
+        let coordsLen = 3 * coordBytes
+        
+        let countBytes = count * coordsLen
         var i = 1
         
         var points: [CGPoint] = []
         
         while i < countBytes {
-            let x = CGFloat(Int8(
-                bitPattern: data[i]))
             
-            let y = CGFloat(Int8(
-                bitPattern: data[i+1]))
+            print("WHILE:")
             
-            let z = data[i+2]
+            let x: Float = data[i..<(i+4)]
+                .float()
             
-            i += 3
+            i += coordBytes
+            
+            let y: Float = data[i..<(i+4)]
+                .float()
+            
+            i += coordBytes
+            
+            let _: Float = data[i..<(i+4)]
+                .float()
+            
+            i += coordBytes
+            
+            print(x,y)
+            
+            i += coordsLen
             
             points.append(
                 CGPoint(
-                    x: x,
-                    y: y
+                    x: CGFloat(x),
+                    y: CGFloat(y)
                 )
             )
         }
