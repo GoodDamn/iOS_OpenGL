@@ -164,12 +164,6 @@ final class MainRenderer {
                 vDegrees: dy * 5
             )
         
-        /*MainRenderer
-            .mCamera
-            .addRotationY(
-                dx * 2.5
-            )
-        */
         mpoint = pos
     }
     

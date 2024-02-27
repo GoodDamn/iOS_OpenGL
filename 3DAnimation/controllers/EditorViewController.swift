@@ -18,16 +18,15 @@ final class EditorViewController
     ) {
         super.viewWillDisappear(animated)
         
-        FileSkl
-            .write(
-                points: &mGrid.mPoints,
-                fileName: "1.skl",
-                project: CGPoint(
-                    x: mGrid.projectX,
-                    y: mGrid.projectY
-                ),
-                center: mGrid.center
-            )
+        FileSkl.write(
+            points: &mGrid.mPoints,
+            fileName: "1.skl",
+            project: CGPoint(
+                x: mGrid.projectX,
+                y: mGrid.projectY
+            ),
+            center: mGrid.center
+        )
         
     }
     
@@ -44,6 +43,15 @@ final class EditorViewController
         mGrid.backgroundColor = .white
         
         view = mGrid
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let objs = Bundle.files(
+            ".obj"
+        )
+        
     }
     
 }
