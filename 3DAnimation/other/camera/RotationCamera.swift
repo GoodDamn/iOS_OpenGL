@@ -11,7 +11,7 @@ import GLKit.GLKMath
 final class RotationCamera
     : BaseCamera {
     
-    private var mRadius: Float = 10.0
+    private var mRadius: Float = 3.0
     
     private var mHDeg: Float = 40
     private var mVDeg: Float = 40

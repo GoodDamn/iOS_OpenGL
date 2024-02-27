@@ -37,11 +37,15 @@ extension Data {
     }
     
     func integer() -> Int {
-        return Int(self[startIndex]) << 24 |
-            Int(self[startIndex + 1]) << 16 |
-            Int(self[startIndex + 2]) << 8 |
-            Int(self[startIndex + 3])
+        
+        print("integer:", ([UInt8]) (self))
+        
+        return Int(self[startIndex].sign()) << 24 |
+        Int(self[startIndex + 1].sign()) << 16 |
+        Int(self[startIndex + 2].sign()) << 8 |
+        Int(self[startIndex + 3].sign())
     }
+    
     
     func val <T>() -> T {
         

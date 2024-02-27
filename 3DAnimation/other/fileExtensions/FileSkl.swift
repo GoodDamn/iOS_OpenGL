@@ -94,7 +94,7 @@ final class FileSkl {
     
     static func read(
         fileName: String
-    ) -> [CGPoint] {
+    ) -> [EditorEntity] {
         
         let fm = FileManager.default
         
@@ -113,17 +113,13 @@ final class FileSkl {
         
         let count = Int(data[0])
         let coordBytes = 4
-        
         let coordsLen = 3 * coordBytes
         
-        let countBytes = count * coordsLen
         var i = 1
         
-        var points: [CGPoint] = []
+        var entities: [EditorEntity] = []
         
-        while i < countBytes {
-            
-            print("WHILE:")
+        while i < data.count {
             
             let x: Float = data[i..<(i+4)]
                 .float()
@@ -140,19 +136,34 @@ final class FileSkl {
             
             i += coordBytes
             
-            print(x,y)
+            let lenObjName = Int(data[i])
+            i += 1
             
-            i += coordsLen
+            let dataObjName = data[i..<(i+lenObjName)]
             
-            points.append(
-                CGPoint(
+            i += lenObjName
+            
+            let objName = String(
+                data: dataObjName,
+                encoding: .ascii
+            ) ?? "box.obj"
+            
+            print("COORDS:",x,y,objName)
+            
+            let entity = EditorEntity(
+                objName: objName,
+                point: CGPoint(
                     x: CGFloat(x),
                     y: CGFloat(y)
                 )
             )
+            
+            entities.append(
+                entity
+            )
         }
         
-        return points
+        return entities
     }
     
 }

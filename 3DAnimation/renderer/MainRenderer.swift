@@ -43,23 +43,25 @@ final class MainRenderer {
             .mProgram
         )
         
-        let points = FileSkl.read(
+        let lvlEntities = FileSkl.read(
             fileName: "1.skl"
         )
         
-        for p in points {
+        for e in lvlEntities {
             
             let mesh = Mesh(
-                objectName: "test.obj",
+                objectName: e.objName,
                 textureName: "prim_text.jpg",
                 program: MainRenderer
                     .mProgram
             )
             
+            print(e.objName)
+            
             mesh.position(
-                x: Float(p.x),
+                x: Float(e.point.x),
                 y: 0,
-                z: Float(p.y)
+                z: Float(e.point.y)
             )
             
             meshes.append(mesh)
@@ -85,14 +87,6 @@ final class MainRenderer {
         )
         
         mIsCreated = true
-        
-        MainRenderer
-            .mCamera
-            .addPosition(
-                x: 0,
-                y: 0.0,
-                z: 0.0
-            )
         
         glEnable(GLenum(
             GL_DEPTH_TEST

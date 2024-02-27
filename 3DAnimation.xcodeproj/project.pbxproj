@@ -38,6 +38,7 @@
 		25EA755F2B8D9641003FC583 /* ObjCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EA755E2B8D9641003FC583 /* ObjCollectionView.swift */; };
 		25EA75622B8DA33D003FC583 /* EditorEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EA75612B8DA33D003FC583 /* EditorEntity.swift */; };
 		25EA75652B8DA6D1003FC583 /* ObjCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EA75642B8DA6D1003FC583 /* ObjCollectionViewDelegate.swift */; };
+		25EA75672B8E4CC7003FC583 /* UInt8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EA75662B8E4CC7003FC583 /* UInt8.swift */; };
 		25EDF4AF2B486E3C002A6CC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4AE2B486E3C002A6CC6 /* AppDelegate.swift */; };
 		25EDF4B12B486E3C002A6CC6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4B02B486E3C002A6CC6 /* SceneDelegate.swift */; };
 		25EDF4B32B486E3C002A6CC6 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25EDF4B22B486E3C002A6CC6 /* PreviewController.swift */; };
@@ -98,6 +99,7 @@
 		25EA755E2B8D9641003FC583 /* ObjCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjCollectionView.swift; sourceTree = "<group>"; };
 		25EA75612B8DA33D003FC583 /* EditorEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorEntity.swift; sourceTree = "<group>"; };
 		25EA75642B8DA6D1003FC583 /* ObjCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		25EA75662B8E4CC7003FC583 /* UInt8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UInt8.swift; sourceTree = "<group>"; };
 		25EDF4AB2B486E3C002A6CC6 /* 3DAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 3DAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25EDF4AE2B486E3C002A6CC6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25EDF4B02B486E3C002A6CC6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				25C5B1782B85E36500AB7114 /* FileManage.swift */,
 				25EA755A2B8CF043003FC583 /* Data.swift */,
 				25EA755C2B8D937C003FC583 /* Bundle.swift */,
+				25EA75662B8E4CC7003FC583 /* UInt8.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 			files = (
 				25C5B1682B85ABF500AB7114 /* FileManager.swift in Sources */,
 				25EA755D2B8D937D003FC583 /* Bundle.swift in Sources */,
+				25EA75672B8E4CC7003FC583 /* UInt8.swift in Sources */,
 				250622452B490ABB00FCD636 /* Entity.swift in Sources */,
 				250622632B4B108800FCD636 /* Texture.swift in Sources */,
 				25C5B1792B85E36500AB7114 /* FileManage.swift in Sources */,
