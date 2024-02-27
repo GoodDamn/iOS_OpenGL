@@ -13,6 +13,9 @@ final class EditorViewController
     
     private var mGrid: GridView!
     
+    private var mObjCollectionView:
+        ObjCollectionView!
+    
     override func viewWillDisappear(
         _ animated: Bool
     ) {
@@ -48,10 +51,20 @@ final class EditorViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let objs = Bundle.files(
-            ".obj"
+        let w = mGrid.frame.width
+        let h = mGrid.frame.height
+        
+        mObjCollectionView = ObjCollectionView(
+            frame: CGRect(
+                x: 0,
+                y: h * 0.7,
+                width: w,
+                height: h * 0.3
+            ),
+            direction: .horizontal
         )
         
+        view.addSubview(mObjCollectionView)
     }
     
 }
