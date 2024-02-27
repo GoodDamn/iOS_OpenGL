@@ -16,6 +16,8 @@ final class EditorViewController
     private var mObjCollectionView:
         ObjCollectionView!
     
+    private var mObjNameSelected: String? = nil
+    
     override func viewWillDisappear(
         _ animated: Bool
     ) {
@@ -64,7 +66,22 @@ final class EditorViewController
             direction: .horizontal
         )
         
-        view.addSubview(mObjCollectionView)
+        mObjCollectionView.delegateObj = self
+        
+        view.addSubview(
+            mObjCollectionView
+        )
+    }
+    
+}
+
+extension EditorViewController
+    : ObjCollectionViewDelegate {
+    
+    func onSelectObject(
+        name: String?
+    ) {
+        mObjNameSelected = name
     }
     
 }
@@ -75,7 +92,8 @@ extension EditorViewController {
         _ touches: Set<UITouch>,
         with event: UIEvent?
     ) {
-        guard let touch = touches.first else {
+        guard let touch = touches.first,
+            let objName = mObjNameSelected else {
             return
         }
         
@@ -83,7 +101,7 @@ extension EditorViewController {
             touch.location(
                 in: mGrid
             ),
-            objName: "plane.obj"
+            objName: objName
         )
     }
     

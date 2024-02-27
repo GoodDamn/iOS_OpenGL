@@ -14,6 +14,8 @@ final class ObjCollectionView
     
     private let mId = "cell"
     
+    weak var delegateObj: ObjCollectionViewDelegate? = nil
+    
     private let mObjs: [String]?
     
     init(
@@ -121,7 +123,9 @@ extension ObjCollectionView
         _ collectionView: UICollectionView,
         didSelectItemAt indexPath: IndexPath
     ) {
-        
+        delegateObj?.onSelectObject(
+            name: mObjs?[indexPath.row]
+        )
     }
     
 }
