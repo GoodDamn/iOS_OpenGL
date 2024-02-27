@@ -24,12 +24,19 @@ final class FileSkl {
             count: 1
         )
         
+        let zeroData = Data(
+            capacity: 1
+        )
+        
         for i in entities.indices {
-            entities[i].point.world(
+            
+            var entity = entities[i]
+            
+            entity.point.world(
                 center: center
             )
             
-            let a = entities[i].point
+            let a = entity.point
             
             let x = Float(a.x / project.x)
             let y = Float(a.y / project.y)
@@ -51,6 +58,25 @@ final class FileSkl {
             
             data.append(
                 zData
+            )
+            
+            guard let dataObjName = entity.objName
+                .data(
+                    using: .ascii
+                ) else {
+                data.append(
+                    zeroData
+                )
+                continue
+            }
+            
+            data.append(
+                [UInt8(dataObjName.count)],
+                count: 1 // byte
+            )
+            
+            data.append(
+                dataObjName
             )
             
         }
