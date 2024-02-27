@@ -10,26 +10,26 @@ import Foundation
 final class FileSkl {
     
     static func write(
-        points: inout [CGPoint],
+        entities: inout [EditorEntity],
         fileName: String,
         project: CGPoint,
         center: CGPoint
     ) {
         var data = Data()
         
-        var count = UInt8(points.count)
+        var count = UInt8(entities.count)
         
         data.append(
             &count,
             count: 1
         )
         
-        for p in points.indices {
-            points[p].world(
+        for i in entities.indices {
+            entities[i].point.world(
                 center: center
             )
             
-            let a = points[p]
+            let a = entities[i].point
             
             let x = Float(a.x / project.x)
             let y = Float(a.y / project.y)

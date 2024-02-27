@@ -22,7 +22,7 @@ final class EditorViewController
         super.viewWillDisappear(animated)
         
         FileSkl.write(
-            points: &mGrid.mPoints,
+            entities: &mGrid.mEntities,
             fileName: "1.skl",
             project: CGPoint(
                 x: mGrid.projectX,
@@ -79,10 +79,11 @@ extension EditorViewController {
             return
         }
         
-        mGrid.addPoint(
+        mGrid.addEntity(
             touch.location(
                 in: mGrid
-            )
+            ),
+            objName: "plane.obj"
         )
     }
     
