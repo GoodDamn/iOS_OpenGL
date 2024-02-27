@@ -18,7 +18,7 @@ final class GridView
     final var cols = 5
     
     
-    final var mPoints: [CGPoint] = []
+    final var mEntities: [EditorEntity] = []
     
     private final let mLayer =
         CAShapeLayer()
@@ -94,18 +94,53 @@ final class GridView
         
         pathGrid.close()
         
-        for point in mPoints {
+        for entity in mEntities {
+            
+            let p = entity.point
             
             pathPoint.move(
-                to: point
+                to: p
             )
             
+            
             pathPoint.addArc(
-                withCenter: point,
+                withCenter: p,
                 radius: 5.0,
                 startAngle: 0,
                 endAngle: .pi * 2,
                 clockwise: true
+            )
+            
+            let st = NSMutableAttributedString(
+                string: entity.objName
+            )
+            
+            let range = NSRange(
+                location: 0,
+                length: st.length
+            )
+            
+            st.addAttribute(
+                .font,
+                value: UIFont.systemFont(
+                    ofSize: 15
+                ),
+                range: range
+            )
+            
+            st.addAttribute(
+                .foregroundColor,
+                value: UIColor.black,
+                range: range
+            )
+            
+            st.draw(
+                in: CGRect(
+                    x: p.x,
+                    y: p.y,
+                    width: rect.width - p.x,
+                    height: rect.height - p.y
+                )
             )
             
         }
@@ -123,11 +158,15 @@ final class GridView
     
     
     
-    final func addPoint(
-        _ p: CGPoint
+    final func addEntity(
+        _ p: CGPoint,
+        objName: String
     ) {
-        mPoints.append(
-            p
+        mEntities.append(
+            EditorEntity(
+                objName: objName,
+                point: p
+            )
         )
         
         setNeedsDisplay()

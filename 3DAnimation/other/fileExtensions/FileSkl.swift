@@ -10,32 +10,73 @@ import Foundation
 final class FileSkl {
     
     static func write(
-        points: inout [CGPoint],
+        entities: inout [EditorEntity],
         fileName: String,
         project: CGPoint,
         center: CGPoint
     ) {
         var data = Data()
         
-        var count = UInt8(points.count)
+        var count = UInt8(entities.count)
         
         data.append(
             &count,
             count: 1
         )
         
-        for p in points.indices {
-            points[p].world(
+        let zeroData = Data(
+            capacity: 1
+        )
+        
+        for i in entities.indices {
+            
+            var entity = entities[i]
+            
+            entity.point.world(
                 center: center
             )
             
-            let a = points[p]
+            let a = entity.point
+            
+            let x = Float(a.x / project.x)
+            let y = Float(a.y / project.y)
+            let z: Float = 0
+            
+            let xData = Data.float(x)
+            let yData = Data.float(y)
+            let zData = Data.float(z)
+            
+            print(xData, yData, zData)
             
             data.append(
-                [UInt8(bitPattern: Int8(a.x / project.x)),
-                 UInt8(bitPattern: Int8(a.y / project.y)),
-                 UInt8(bitPattern: 0)],
-                count: 3
+                xData
+            )
+            
+            data.append(
+                yData
+            )
+            
+            data.append(
+                zData
+            )
+            
+            guard let dataObjName = entity.objName
+                .data(
+                    using: .ascii
+                ) else {
+                data.append(
+                    zeroData
+                )
+                continue
+            }
+            
+            data.append(
+                [UInt8(dataObjName.count)],
+                count: 1 // byte
+            )
+            
+            data.append(
+                dataObjName
             )
             
         }
@@ -53,7 +94,7 @@ final class FileSkl {
     
     static func read(
         fileName: String
-    ) -> [CGPoint] {
+    ) -> [EditorEntity] {
         
         let fm = FileManager.default
         
@@ -71,32 +112,58 @@ final class FileSkl {
         }
         
         let count = Int(data[0])
+        let coordBytes = 4
+        let coordsLen = 3 * coordBytes
         
-        let countBytes = count * 3
         var i = 1
         
-        var points: [CGPoint] = []
+        var entities: [EditorEntity] = []
         
-        while i < countBytes {
-            let x = CGFloat(Int8(
-                bitPattern: data[i]))
+        while i < data.count {
             
-            let y = CGFloat(Int8(
-                bitPattern: data[i+1]))
+            let x: Float = data[i..<(i+4)]
+                .float()
             
-            let z = data[i+2]
+            i += coordBytes
             
-            i += 3
+            let y: Float = data[i..<(i+4)]
+                .float()
             
-            points.append(
-                CGPoint(
-                    x: x,
-                    y: y
+            i += coordBytes
+            
+            let _: Float = data[i..<(i+4)]
+                .float()
+            
+            i += coordBytes
+            
+            let lenObjName = Int(data[i])
+            i += 1
+            
+            let dataObjName = data[i..<(i+lenObjName)]
+            
+            i += lenObjName
+            
+            let objName = String(
+                data: dataObjName,
+                encoding: .ascii
+            ) ?? "box.obj"
+            
+            print("COORDS:",x,y,objName)
+            
+            let entity = EditorEntity(
+                objName: objName,
+                point: CGPoint(
+                    x: CGFloat(x),
+                    y: CGFloat(y)
                 )
+            )
+            
+            entities.append(
+                entity
             )
         }
         
-        return points
+        return entities
     }
     
 }
