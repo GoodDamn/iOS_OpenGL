@@ -10,10 +10,12 @@ import GLKit
 
 class BaseLight {
     
-    private var mLightColorUniform: GLint = 1
-    private var mLightAmbientUniform: GLint = 1
-    private var mLightDirectionUniform: GLint = 1
-    private var mLightIntensityUniform: GLint = 1
+    private let mLightColorUniform: GLint
+    private let mLightAmbientUniform: GLint
+    private let mLightDirectionUniform: GLint
+    private let mLightIntensityUniform: GLint
+    private let mSpecularIntensityUnif: GLint
+    private let mShininessUnif: GLint
     
     private var mDirection = GLKVector3()
     private var mColor = GLKVector3()
@@ -39,6 +41,16 @@ class BaseLight {
         mLightIntensityUniform = glGetUniformLocation(
             program,
             "light.diffIntensity"
+        )
+        
+        mSpecularIntensityUnif = glGetUniformLocation(
+            program,
+            "specularIntensity"
+        )
+        
+        mShininessUnif = glGetUniformLocation(
+            program,
+            "shininess"
         )
     }
     
@@ -91,6 +103,16 @@ class BaseLight {
         glUniform1f(
             mLightIntensityUniform,
             GLfloat(0.8)
+        )
+        
+        glUniform1f(
+            mSpecularIntensityUnif,
+            GLfloat(1.0)
+        )
+        
+        glUniform1f(
+            mShininessUnif,
+            GLfloat(2.0)
         )
     }
 }
