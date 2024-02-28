@@ -52,7 +52,7 @@ final class MainRenderer {
             
             let mesh = Mesh(
                 objectName: e.objName,
-                textureName: "prim_text.jpg",
+                textureName: "box.png",
                 program: MainRenderer
                     .mProgram
             )
