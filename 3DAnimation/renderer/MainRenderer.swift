@@ -18,7 +18,8 @@ final class MainRenderer {
     
     private var mIsCreated = false
     private var meshes: [Mesh] = []
-    private var mLights: [BaseLight]!
+    
+    private var mDirectionalLight: BaseLight!
     
     final func onCreate(
         _ frame: CGRect
@@ -51,7 +52,7 @@ final class MainRenderer {
             
             let mesh = Mesh(
                 objectName: e.objName,
-                textureName: "prim_text.jpg",
+                textureName: "box.png",
                 program: MainRenderer
                     .mProgram
             )
@@ -67,20 +68,18 @@ final class MainRenderer {
             meshes.append(mesh)
         }
         
-        mLights = [
-            BaseLight(
-                program: MainRenderer
-                    .mProgram
-            )
-        ]
-        
-        mLights[0].position(
-            x: 0,
-            y: -1.5,
-            z: -1.5
+        mDirectionalLight = BaseLight(
+            program: MainRenderer
+                .mProgram
         )
         
-        mLights[0].color(
+        mDirectionalLight.position(
+            x: 0,
+            y: -50,
+            z: 0
+        )
+        
+        mDirectionalLight.color(
             r: 1.0,
             g: 1.0,
             b: 1.0
@@ -123,9 +122,7 @@ final class MainRenderer {
             e.draw()
         }
         
-        mLights.forEach { e in
-            e.draw()
-        }
+        mDirectionalLight.draw()
     }
     
     final func onUpdate() {
